@@ -1,0 +1,167 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import { Button } from "@/components/ui/button";
+
+export const metadata = {
+  title: "Button · Cumbre",
+  description:
+    "API, variantes y estados del componente Button de Cumbre.",
+};
+
+# Button
+
+El botón es el **contrato de acción** con el usuario. Cada botón que ponés es una promesa:
+"si hacés click acá, pasa esto". Cumbre ofrece seis variantes, cuatro tamaños y estados
+bien definidos — y una sola regla: **una sola acción principal por vista**.
+
+---
+
+## Ejemplo básico
+
+<Preview>
+  <Button>Guardar cambios</Button>
+  <Button variant="secondary">Cancelar</Button>
+</Preview>
+
+## Variantes
+
+Seis variantes, cada una con un propósito. La elección **no es estética** — es semántica.
+
+<PreviewGrid columns={3}>
+  <Preview label="primary"><Button variant="primary">Primary</Button></Preview>
+  <Preview label="accent"><Button variant="accent">Accent</Button></Preview>
+  <Preview label="secondary"><Button variant="secondary">Secondary</Button></Preview>
+  <Preview label="ghost"><Button variant="ghost">Ghost</Button></Preview>
+  <Preview label="destructive"><Button variant="destructive">Destructive</Button></Preview>
+  <Preview label="link"><Button variant="link">Link action</Button></Preview>
+</PreviewGrid>
+
+| Variante | Rol | Cuándo |
+| --- | --- | --- |
+| `primary` | Acción principal, navy | CTA default del flujo |
+| `accent` | Acción destacada, ámbar | Momento crítico: "empezar", "publicar", "suscribirse" |
+| `secondary` | Acción alternativa, bordered | Cancelar, volver, opción secundaria |
+| `ghost` | Acción terciaria, sin fondo | Toolbars, menús, zonas densas |
+| `destructive` | Acción peligrosa | Eliminar, revocar, desvincular |
+| `link` | Acción inline, sin chrome | Links dentro de texto corrido |
+
+### Primary vs Accent · la pregunta que todos se hacen
+
+<Callout variant="do" title="Cuándo usar accent (ámbar) en lugar de primary (navy)">
+  - Una **única** acción por vista que querés que sobresalga visualmente: "Empezar prueba",
+    "Publicar", "Confirmar pago".
+  - Momentos de onboarding o CTAs de marketing.
+  - Acciones que cambian el contexto de forma notable.
+
+  Si ya hay un accent en la vista, el resto de los botones van en primary o secondary.
+  **Dos accents en paralelo cancelan su propio peso.**
+</Callout>
+
+## Sizes
+
+<PreviewGrid columns={4}>
+  <Preview label="size sm"><Button size="sm">Small</Button></Preview>
+  <Preview label="size md · DEFAULT"><Button size="md">Medium</Button></Preview>
+  <Preview label="size lg"><Button size="lg">Large</Button></Preview>
+  <Preview label="size icon"><Button size="icon" aria-label="Agregar">+</Button></Preview>
+</PreviewGrid>
+
+| Size | Altura | Padding | Uso |
+| --- | --- | --- | --- |
+| `sm` | 32px | 12px | Toolbars, tablas, filtros densos |
+| `md` | 40px | 16px | **Default** — formularios y la mayoría de CTAs |
+| `lg` | 44px | 24px | Hero CTAs, landing, onboarding |
+| `icon` | 40 × 40 | 0 | Acción representada solo por ícono (siempre con `aria-label`) |
+
+## Estados
+
+<PreviewGrid columns={4}>
+  <Preview label="Default"><Button>Guardar</Button></Preview>
+  <Preview label="Disabled"><Button disabled>Guardar</Button></Preview>
+  <Preview label="Loading"><Button loading>Guardando</Button></Preview>
+  <Preview label="With icons">
+    <Button leadingIcon={<span>↓</span>} trailingIcon={<span>↗</span>}>
+      Descargar
+    </Button>
+  </Preview>
+</PreviewGrid>
+
+### Loading
+
+El estado `loading`:
+
+- Deshabilita el botón (`disabled` interno).
+- Reemplaza el `leadingIcon` por un spinner (`Loader2` con `animate-spin`).
+- Marca `aria-busy="true"` — lectores de pantalla anuncian el estado.
+- **No oculta el texto**: si el label era "Guardando", sigue visible.
+
+```tsx
+<Button loading>Guardando cambios</Button>
+```
+
+## Composición · `asChild`
+
+Cuando necesitás el look de botón pero **con la semántica de otro elemento** (un link de
+Next.js, un `<a>`, un `<label>`), usá `asChild`. El Slot pattern de Radix pasa los estilos
+al hijo directo.
+
+<Preview label="Button como link">
+  <Button asChild>
+    <a href="/docs/principios">Ir a principios</a>
+  </Button>
+</Preview>
+
+```tsx
+import Link from "next/link";
+
+<Button asChild variant="accent">
+  <Link href="/onboarding">Empezar ahora</Link>
+</Button>
+```
+
+<Callout variant="warning" title="Cuidado con asChild">
+  El hijo directo **debe aceptar ref y className**. Un `<div>` arbitrario como hijo de
+  `asChild` no funciona bien — usá elementos nativos o componentes forwardRef.
+</Callout>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+| --- | --- | --- | --- |
+| `variant` | `"primary" \| "accent" \| "secondary" \| "ghost" \| "destructive" \| "link"` | `"primary"` | Estilo visual y rol semántico. |
+| `size` | `"sm" \| "md" \| "lg" \| "icon"` | `"md"` | Altura, padding y tamaño de texto. |
+| `asChild` | `boolean` | `false` | Renderiza el hijo con los estilos del botón (Slot pattern de Radix). |
+| `loading` | `boolean` | `false` | Muestra spinner y bloquea interacción. Setea `aria-busy`. |
+| `leadingIcon` | `ReactNode` | — | Ícono a la izquierda del texto. |
+| `trailingIcon` | `ReactNode` | — | Ícono a la derecha del texto. |
+| `disabled` | `boolean` | `false` | Deshabilita el botón. |
+| `className` | `string` | — | Clases adicionales (composición con `cn`). |
+
+Además acepta todos los props nativos de `<button>` (`onClick`, `type`, `form`, etc.).
+
+## Accesibilidad
+
+- Elemento **nativo** `<button>` por default — ya trae foco, teclado y role.
+- `focus-visible:shadow-focus` garantiza foco visible WCAG 2.1 AA (SC 2.4.7).
+- `aria-busy="true"` durante loading.
+- `disabled` bloquea interacción y marca semánticamente (no usar `pointer-events: none`
+  sin el atributo disabled real).
+- `size="icon"` **requiere** `aria-label` — el ícono por sí solo no informa.
+- Contraste: todas las variantes cumplen 4.5:1 en texto sobre fondo (AA), en light y dark.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - **Una sola acción primaria** (accent o primary) por vista.
+  - Para grupos de acciones: primaria (primary/accent) + secundaria (secondary) +
+    terciaria (ghost/link). Máximo 3.
+  - Usá `destructive` **solo** para acciones irreversibles o con consecuencias serias.
+</Callout>
+
+<Callout variant="dont">
+  - No uses `ghost` para acciones críticas — se ve como link y el usuario no lo detecta.
+  - No alterne variantes distintas **para el mismo tipo de acción** a lo largo del producto.
+    "Guardar" siempre debería ser la misma variante.
+  - No pongas textos largos en botones. Si necesitás explicar, usá un tooltip o una
+    description debajo del botón.
+</Callout>

@@ -1,0 +1,132 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Breakpoints · Cumbre",
+  description:
+    "Escala de breakpoints, container padding y filosofía mobile-first.",
+};
+
+# Breakpoints
+
+Cumbre es **mobile-first**, siempre. No porque esté de moda, sino porque diseñar para la
+pantalla más chica te obliga a decidir **qué es esencial**. Todo lo demás se suma después.
+
+---
+
+## Filosofía · mobile-first, sin excusas
+
+Los estilos base aplican a **móvil**. Los breakpoints agregan comportamiento a medida que
+hay más espacio. Nunca al revés.
+
+```tsx
+// OK — mobile base, desktop override
+<div className="flex flex-col gap-4 md:flex-row md:gap-8">...</div>
+
+// MAL — desktop base, mobile override (frágil, difícil de mantener)
+<div className="flex flex-row gap-8 max-md:flex-col max-md:gap-4">...</div>
+```
+
+<Callout variant="info" title="Por qué mobile-first">
+  Tu producto se usa en un subte, con una mano, con batería al 12%. Si lo diseñás para
+  desktop primero, el móvil **siempre** va a ser concesión. Al revés, desktop es la
+  recompensa por tener más espacio.
+</Callout>
+
+## Escala
+
+| Token | Valor | Device típico |
+| --- | --- | --- |
+| (base) | < 640px | Móvil portrait |
+| `sm` | ≥ 640px | Móvil landscape, phablet |
+| `md` | ≥ 768px | Tablet portrait |
+| `lg` | ≥ 1024px | Tablet landscape, laptop chica |
+| `xl` | ≥ 1280px | Desktop estándar |
+| `2xl` | ≥ 1536px | Desktop amplio, monitores externos |
+
+## Container padding por breakpoint
+
+El container de página respira distinto según el viewport. El padding horizontal crece con
+el ancho; más espacio respira, menos espacio se ciñe.
+
+| Breakpoint | Padding horizontal | Clase típica |
+| --- | --- | --- |
+| Base (< 640px) | 16px | `px-4` |
+| `sm` | 24px | `sm:px-6` |
+| `md` | 32px | `md:px-8` |
+| `lg` | 48px | `lg:px-12` |
+| `xl` | 64px | `xl:px-16` |
+| `2xl` | 80px | `2xl:px-20` |
+
+## Max widths por contexto
+
+No todo debe estirarse al infinito. Un párrafo a 1800px de ancho es ilegible.
+
+| Contexto | Max width | Clase |
+| --- | --- | --- |
+| Párrafo de lectura | 65ch (~640px) | `max-w-prose` |
+| Formulario | 480–640px | `max-w-xl` / `max-w-2xl` |
+| Página de contenido | 1200px | `max-w-6xl` |
+| Dashboard full | 1536px | `max-w-screen-2xl` |
+| Marketing hero | Full bleed | `max-w-none` |
+
+## Cuándo cambiar el layout
+
+Los breakpoints **no son excusa para reacomodar todo**. Hacé cambios **solo cuando el
+contenido deja de funcionar** en el ancho disponible.
+
+| Cambio | Breakpoint sugerido |
+| --- | --- |
+| Stack (col) → grid 2 cols | `md` |
+| Grid 2 → grid 3 cols | `lg` |
+| Sidebar off-canvas → sidebar persistente | `lg` |
+| Tipografía hero 4xl → 6xl | `lg` |
+| Padding de card 4 → 6 | `md` |
+| Tabs → tabs con scroll horizontal | `base` (siempre) |
+
+<Callout variant="do">
+  - Definí breakpoints **donde el contenido lo pide**, no en todos los tokens.
+  - Usá como máximo **2 breakpoints por componente** — si necesitás más, probablemente está
+    haciendo demasiado.
+  - Testeá en **3 anchos reales**: 360px, 768px, 1440px. Si funciona en esos tres, funciona.
+</Callout>
+
+<Callout variant="dont">
+  - No uses breakpoints pixel-perfect (`min-w-[412px]`) — volvés el diseño frágil al refresh
+    del device catalog.
+  - No diseñes primero en Figma a 1440px y "adaptá" después. Empezá por el mobile frame.
+</Callout>
+
+## Demo visual
+
+<Preview label="Stack → row en md" background="muted" minHeight={220}>
+  <div className="flex w-full flex-col gap-4 md:flex-row">
+    <div className="flex-1 rounded-md border border-border bg-surface p-4 text-sm text-text">Bloque 1</div>
+    <div className="flex-1 rounded-md border border-border bg-surface p-4 text-sm text-text">Bloque 2</div>
+    <div className="flex-1 rounded-md border border-border bg-surface p-4 text-sm text-text">Bloque 3</div>
+  </div>
+</Preview>
+
+Redimensioná la ventana a menos de 768px y vas a ver los bloques stackear. A más de 768px,
+se alinean horizontalmente.
+
+## Accesibilidad
+
+- Respetar zoom hasta **200%** sin pérdida de contenido (WCAG 2.1 AA · SC 1.4.4).
+- Los controles táctiles mantienen su tamaño mínimo (44×44) **en todos los breakpoints**.
+- En móvil, la navegación principal debe estar accesible con una sola mano — zona ergonómica
+  de pulgar es el tercio inferior de la pantalla.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Mobile-first para **todo el CSS**.
+  - Breakpoints como **puntos de reflow natural**, no como puntos arbitrarios del device del mes.
+  - Container widths alineados con la escala (`max-w-6xl`, `max-w-screen-2xl`).
+</Callout>
+
+<Callout variant="dont">
+  - No uses media queries `max-width` salvo caso muy puntual.
+  - No mezcles breakpoints custom con los del preset. Si necesitás `820px`, preguntate si
+    no es `md` (768) o `lg` (1024).
+</Callout>

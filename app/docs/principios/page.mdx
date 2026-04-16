@@ -1,0 +1,78 @@
+import { Callout } from "@/components/docs/callout";
+
+export const metadata = {
+  title: "Principios de diseño",
+  description:
+    "Los cinco principios que guían cada decisión de Cumbre.",
+};
+
+# Principios _de diseño_
+
+Todo sistema sin principios termina siendo una colección de componentes. Cumbre se apoya
+en **cinco ideas** que aplicamos cuando hay que tomar una decisión difícil.
+
+---
+
+## 1. Concepto antes que código
+
+Antes de escribir un componente, entendemos **por qué existe y qué problema resuelve**.
+Un componente sin razón clara termina duplicado, mal usado, o simplemente no usado.
+
+<Callout variant="do" title="Cuándo aplicar">
+  Al proponer un componente nuevo: escribí en una oración qué problema resuelve y para qué
+  rol de usuario. Si no lo podés decir en una oración, todavía no está maduro.
+</Callout>
+
+## 2. Precisión sobre decoración
+
+Cada elemento visual — un borde, una sombra, un radio — tiene una función. El lenguaje
+geométrico de Cumbre es intencional: radios tight, shadows navy-tinted, grillas consistentes.
+**Si algo se siente "decorativo", probablemente sobra.**
+
+## 3. Jerarquía por contraste, no por color
+
+El color primario (el navy) y el accent (el ámbar) son herramientas precisas.
+La jerarquía se logra principalmente con **tamaño, peso y espacio**. El color marca
+**momentos**, no estructura.
+
+<Callout variant="dont" title="Evitá">
+  Usar el accent ámbar para más de **un elemento por vista**. Si todo grita, nada resalta.
+  El ámbar es para el CTA principal, el estado crítico, o el punto focal — no para rellenar.
+</Callout>
+
+## 4. Accesibilidad como línea base
+
+WCAG 2.1 AA no es una feature opcional, es el mínimo. Todos los componentes de Cumbre:
+
+- Tienen roles semánticos correctos.
+- Soportan navegación por teclado completa.
+- Cumplen contraste de color en ambos temas (light y dark).
+- Exponen estados claros (focus, hover, disabled, loading, error).
+
+Productos del sector público argentino tienen obligación legal ([Ley 26.653](https://servicios.infoleg.gob.ar/infolegInternet/anexos/170000-174999/171941/norma.htm)).
+No es opcional.
+
+## 5. Coherencia sobre individualidad
+
+Cuando un producto necesita algo especial, **primero** revisamos si el sistema lo resuelve.
+**Segundo**, si lo puede resolver con una pequeña extensión. Solo **tercero** consideramos
+crear algo propio — y si eso pasa, discutimos si debe subir al sistema.
+
+<Callout variant="warning" title="Cuidado con los forks">
+  Una copia local de un componente para "tunearlo" es deuda técnica en el día cero.
+  Si necesitás cambiar un componente, pedilo al sistema: si el caso se repite, suma.
+</Callout>
+
+---
+
+## Regla de decisión
+
+Ante cualquier duda de diseño o código, pasamos la decisión por estas preguntas en orden:
+
+1. ¿Resuelve un problema real que tenemos hoy?
+2. ¿Lo resuelve con el lenguaje y tokens existentes?
+3. ¿Mejora la coherencia entre productos AndesIA, o la empeora?
+4. ¿Es accesible por default, o hay que recordárselo al consumer?
+5. ¿Podría alguien nuevo al equipo usarlo bien sin leer documentación extra?
+
+Si alguna respuesta es no, todavía no está listo.

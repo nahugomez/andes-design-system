@@ -1,0 +1,124 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Sombras · Cumbre",
+  description:
+    "Sistema de elevación navy-tinted y uso del focus shadow.",
+};
+
+# Sombras
+
+Las sombras de Cumbre están **tintadas con navy** (`hsl(227 47% 17%)`), no con negro puro.
+Eso preserva la coherencia cromática: una sombra negra sobre un fondo cálido "sucia"
+la paleta; una sombra navy se integra.
+
+---
+
+## Principio de elevación
+
+Cuanto más alto el elemento, más **difusa y más desplazada** su sombra. No es realismo:
+es lectura. La sombra te dice "esto vive más cerca tuyo" sin que tengas que pensarlo.
+
+<Callout variant="info" title="Navy tint, no negro">
+  Un `rgba(0,0,0,0.1)` sobre un fondo neutral-50 da gris neutro. Un
+  `hsl(227 47% 17% / 0.1)` da un gris **con memoria del navy primario** — el mismo hue que
+  textos y botones. Esa continuidad es lo que hace el sistema coherente.
+</Callout>
+
+## Escala
+
+<PreviewGrid columns={3}>
+  <Preview label="shadow-xs" background="muted" minHeight={200}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-xs" />
+  </Preview>
+  <Preview label="shadow-sm" background="muted" minHeight={200}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-sm" />
+  </Preview>
+  <Preview label="shadow-md" background="muted" minHeight={200}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-md" />
+  </Preview>
+  <Preview label="shadow-lg" background="muted" minHeight={200}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-lg" />
+  </Preview>
+  <Preview label="shadow-xl" background="muted" minHeight={200}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-xl" />
+  </Preview>
+  <Preview label="shadow-2xl" background="muted" minHeight={220}>
+    <div className="h-24 w-32 rounded-lg border border-border bg-surface shadow-2xl" />
+  </Preview>
+</PreviewGrid>
+
+| Token | Elevación | Uso típico |
+| --- | --- | --- |
+| `shadow-xs` | Casi plano | Cards default, chips, inputs en reposo |
+| `shadow-sm` | Leve | Botones hover, dropdowns cerrados, zona apoyada |
+| `shadow-md` | Media | Cards elevadas, popovers, tooltips |
+| `shadow-lg` | Notable | Menus, select panels, date pickers |
+| `shadow-xl` | Alta | Modals secundarios, drawers |
+| `shadow-2xl` | Máxima | Dialogs principales, full-screen overlays |
+
+## Focus shadow
+
+El foco **no se marca con borde** — se marca con `shadow-focus`: un ring ámbar de 3px con
+offset neutral, que respeta el radio del componente y no altera el layout.
+
+<Preview label="Focus demo · clickeá el botón y hacé tab">
+  <button className="inline-flex h-10 items-center rounded-md border-none bg-action-primary px-4 text-sm font-medium text-text-on-primary transition-all duration-fast ease-precise hover:bg-action-primary-hover focus-visible:shadow-focus focus-visible:outline-none">
+    Enfocame con tab
+  </button>
+</Preview>
+
+<Callout variant="do">
+  - Siempre usá `focus-visible:shadow-focus` para elementos interactivos.
+  - Si el componente tiene fondo oscuro, agregá un offset blanco interno para contraste
+    doble (`shadow-[0_0_0_2px_var(--surface),0_0_0_5px_var(--focus)]`).
+</Callout>
+
+<Callout variant="dont">
+  - No reemplaces el focus ring por `outline: none` sin reemplazo. Estás rompiendo a11y y
+    usabilidad con teclado.
+  - No uses una sombra genérica (`shadow-md`) como focus: el foco tiene que ser **distintivo**,
+    no solo visible.
+</Callout>
+
+## Combinación con bordes
+
+Un elemento con `shadow-md` y `border-strong` se ve redundante. La regla:
+
+- **Shadow sola**: elemento elevado sobre fondo similar.
+- **Border solo**: elemento al mismo nivel que su fondo.
+- **Shadow + border fino** (`border-border`): elemento elevado que necesita definición extra
+  en contextos de baja contraste (p. ej. dark mode).
+- **Shadow + border-strong**: evitarlo — compite visualmente.
+
+## Dark mode
+
+En dark, las sombras **bajan su opacidad** pero mantienen el hue navy. Como el fondo ya es
+oscuro, la sombra aporta menos "elevación visual" — compensamos con un `border` leve.
+
+<Callout variant="info" title="Dark mode pro tip">
+  En dark mode, preferí `border-border` + `shadow-xs` antes que `shadow-md` solo. El borde
+  hace más trabajo que la sombra porque el contraste fondo-elemento ya es chico.
+</Callout>
+
+## Accesibilidad
+
+- Las sombras **nunca son señal única** de estado. Hover, focus y selección deben tener
+  además color, borde o micro-movimiento.
+- El focus shadow cumple WCAG 2.1 AA (SC 2.4.7 Focus Visible) con contraste ≥ 3:1 sobre
+  cualquier surface del sistema, en light y en dark.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Usá elevación para comunicar **jerarquía de interacción**: modal encima de popover
+    encima de dropdown encima de page.
+  - Asigná una sombra por **nivel de z-index** y mantenela consistente.
+</Callout>
+
+<Callout variant="dont">
+  - No uses `shadow-2xl` en un card de listado "para que resalte". Si todo resalta, nada resalta.
+  - No apiles múltiples sombras custom: usá la escala. Es lo que garantiza coherencia cross-producto.
+  - No uses shadow negro puro — rompe la paleta.
+</Callout>

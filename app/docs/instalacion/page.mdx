@@ -1,0 +1,116 @@
+import { Callout } from "@/components/docs/callout";
+
+export const metadata = {
+  title: "Instalación",
+  description: "Cómo incorporar Cumbre a un proyecto AndesIA en 5 minutos.",
+};
+
+# Instalación
+
+Cumbre se consume como paquete npm en cualquier proyecto AndesIA. Ideal: proyectos basados en
+**Next.js 14+**, **React 18+** y **Tailwind CSS 3.4+**.
+
+---
+
+## 1. Instalá el paquete
+
+```bash
+npm install @andesia/cumbre
+# o
+pnpm add @andesia/cumbre
+```
+
+<Callout variant="info">
+  Si tu proyecto usa otra versión de React o Tailwind, revisá la tabla de compatibilidad
+  más abajo antes de instalar.
+</Callout>
+
+## 2. Incluí la hoja de tokens
+
+En el punto de entrada de tu app (`app/layout.tsx` en Next.js, `main.tsx` en Vite):
+
+```ts
+import "@andesia/cumbre/styles.css";
+```
+
+Esto carga las CSS variables de los tokens de Cumbre (colores, radii, shadows, motion).
+
+## 3. Aplicá el preset de Tailwind
+
+En tu `tailwind.config.ts`:
+
+```ts
+import type { Config } from "tailwindcss";
+import { cumbrePreset } from "@andesia/cumbre/tailwind-preset";
+
+export default {
+  darkMode: "class",
+  presets: [cumbrePreset],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@andesia/cumbre/dist/**/*.js",
+  ],
+} satisfies Config;
+```
+
+<Callout variant="warning" title="No olvides el content glob">
+  El path a `node_modules/@andesia/cumbre/dist/**/*.js` es **obligatorio** — sin él,
+  Tailwind no ve las clases usadas internamente por los componentes y las purga.
+</Callout>
+
+## 4. Habilitá el theme toggle (opcional)
+
+Si querés soporte de dark mode automático:
+
+```tsx
+// app/layout.tsx
+import { ThemeProvider } from "@andesia/cumbre";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="es" suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+## 5. Usá los componentes
+
+```tsx
+import { Button, Card, CardHeader, CardTitle } from "@andesia/cumbre";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Hola, Cumbre</CardTitle>
+      </CardHeader>
+    </Card>
+  );
+}
+```
+
+Listo. Ya estás usando el sistema.
+
+---
+
+## Compatibilidad
+
+| Runtime | Versión mínima |
+| --- | --- |
+| Node.js | 18.17.0 |
+| React | 18.0 · 19.0 |
+| Next.js | 14.0 |
+| Tailwind CSS | 3.4 |
+
+## ¿Problemas?
+
+- **Las clases no se aplican.** Verificá el `content` glob en `tailwind.config.ts` (paso 3).
+- **El dark mode no cambia.** Asegurate de envolver la app con `<ThemeProvider>` y usar `darkMode: "class"` en Tailwind.
+- **Los radius se ven como círculos.** Revisá que `styles.css` de Cumbre esté importado antes que tu CSS global.

@@ -1,0 +1,144 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Tipografía · Cumbre",
+  description:
+    "Escala tipográfica, pairing de fuentes y jerarquía por peso y tracking.",
+};
+
+# Tipografía
+
+La tipografía de Cumbre trabaja con **dos fuentes** y una jerarquía basada en **peso, tamaño
+y tracking**. Nada de decoración: la forma comunica función.
+
+---
+
+## Pairing · Geist Sans + Geist Mono
+
+Usamos **Geist Sans** para toda la interfaz y **Geist Mono** para código, tokens y metadata
+técnica. Dos familias, una sola familia visual. Son geométricas, legibles en pantalla y
+escalan bien de 11px a 96px sin perder carácter.
+
+<Callout variant="info" title="Por qué solo dos fuentes">
+  Cada familia tipográfica cuesta bytes, decisiones y coherencia. Dos alcanzan para todo:
+  una para leer, una para señalar lo que es código. Más es ruido.
+</Callout>
+
+## Jerarquía por peso, tamaño y tracking
+
+En Cumbre la jerarquía **no depende del color**. Los titulares no son navy para "pesar más" —
+pesan más porque son más grandes, más light y más tight. El color entra solo cuando hay que
+comunicar estado.
+
+<Preview label="Escala en vivo" align="start" minHeight={520}>
+  <div className="flex w-full flex-col gap-6">
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">Display · 7xl · light · tracking tight</p>
+      <h1 className="text-7xl font-light tracking-[-0.05em] text-text">Cumbre</h1>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">H1 · 5xl · light</p>
+      <p className="text-5xl font-light tracking-[-0.04em] text-text">Diseñamos con intención</p>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">H2 · 3xl · medium</p>
+      <p className="text-3xl font-medium tracking-[-0.03em] text-text">Principios del sistema</p>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">H3 · xl · semibold</p>
+      <p className="text-xl font-semibold tracking-[-0.02em] text-text">Una sección del contenido</p>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">Body · base · regular</p>
+      <p className="text-base text-text">
+        El cuerpo del texto usa Geist Sans regular. Se lee bien entre 15 y 17px con una altura
+        de línea generosa. La jerarquía se apoya en tamaño, peso y tracking — no en el color.
+      </p>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">Caption · xs · medium · text-tertiary</p>
+      <p className="text-xs font-medium text-text-tertiary">
+        Metadata, hints y labels discretos que acompañan al contenido principal.
+      </p>
+    </div>
+    <div>
+      <p className="text-2xs font-mono uppercase tracking-[0.18em] text-text-tertiary">Mono · sm · Geist Mono</p>
+      <p className="font-mono text-sm text-text-secondary">const tokens = ["primary", "accent"];</p>
+    </div>
+  </div>
+</Preview>
+
+## Escala tipográfica
+
+La escala arranca en **2xs (11px)** y trepa hasta **8xl (96px)**. Cada paso tiene un
+**line-height propio** pensado para ese rango — no es `1.5` parejo para todo.
+
+| Token | Tamaño | Line height | Tracking sugerido | Uso típico |
+| --- | --- | --- | --- | --- |
+| `text-2xs` | 11px | 16px | 0 | Labels de tabla, uppercase metadata |
+| `text-xs` | 12px | 16px | 0 | Caption, hint, badge |
+| `text-sm` | 14px | 20px | 0 | Body secundario, UI dense |
+| `text-base` | 16px | 24px | 0 | Body de lectura |
+| `text-lg` | 18px | 28px | -0.01em | Lead paragraph, card title |
+| `text-xl` | 20px | 28px | -0.02em | H3, énfasis inline |
+| `text-2xl` | 24px | 32px | -0.02em | Section title |
+| `text-3xl` | 30px | 36px | -0.03em | H2 |
+| `text-4xl` | 36px | 40px | -0.03em | H1 de página compacta |
+| `text-5xl` | 48px | 48px | -0.04em | H1 de landing |
+| `text-6xl` | 60px | 60px | -0.04em | Display secundario |
+| `text-7xl` | 72px | 72px | -0.05em | Display principal |
+| `text-8xl` | 96px | 96px | -0.05em | Hero marketing |
+
+## Pesos
+
+Trabajamos con **tres pesos** — más pesos diluyen la jerarquía.
+
+| Peso | Valor | Uso |
+| --- | --- | --- |
+| Light | 300 | Titulares grandes (≥ 3xl). El aire del light hace que el tamaño se lea como elegancia y no como grito. |
+| Medium | 500 | Subtítulos, labels, botones. Peso de trabajo. |
+| Semibold | 600 | Body énfasis, card titles, tabla headers. |
+
+<Callout variant="dont">
+  Usar bold (700+) en titulares. Un 5xl en bold se siente agresivo; el mismo 5xl en light
+  se siente preciso. El peso trabaja en contra del tamaño, no a favor.
+</Callout>
+
+## Tracking
+
+El tracking **se achica cuando el tamaño crece**. Un titular en 48px con tracking 0 se ve
+suelto. Con -0.04em se vuelve sólido.
+
+<Callout variant="do">
+  - Cuerpo (≤ lg): tracking 0 (default).
+  - Subtítulos (xl–2xl): -0.02em.
+  - Titulares (3xl–5xl): -0.03em a -0.04em.
+  - Display (6xl+): -0.05em.
+</Callout>
+
+## Longitud de línea
+
+Para lectura cómoda, apuntá a **55–75 caracteres por línea** (~`max-w-prose` o
+`max-w-[65ch]`). Líneas más largas cansan; más cortas entrecortan el ritmo.
+
+## Accesibilidad
+
+- Tamaño mínimo de body: **14px**. Por debajo solo para metadata no crítica.
+- Line-height mínimo de body: **1.5**.
+- Contraste WCAG 2.1 AA: todos los pares `text` sobre `background` pasan ≥ 4.5:1.
+- No usar color como única señal de jerarquía — siempre apoyar con tamaño o peso.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Limitate a **2 o 3 niveles de jerarquía por vista** (H1 → H2 → body).
+  - Combiná peso light + tamaño grande para elegancia; peso semibold + tamaño chico para énfasis local.
+  - Usá Geist Mono exclusivamente para **contenido técnico** (código, tokens, IDs).
+</Callout>
+
+<Callout variant="dont">
+  - No mezcles más de 3 tamaños distintos en un mismo bloque.
+  - No uses italic para destacar — usá peso o color de rol.
+  - No bajes de 12px en texto que el usuario tenga que leer.
+</Callout>

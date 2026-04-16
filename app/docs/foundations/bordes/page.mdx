@@ -1,0 +1,122 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Bordes y radios · Cumbre",
+  description:
+    "Ancho de bordes, escala de radios y semántica de redondeo en Cumbre.",
+};
+
+# Bordes y _radios_
+
+Los bordes delimitan superficies; los radios le dan carácter. Cumbre apuesta por **bordes
+finos** (1px) y **radios contenidos** — la geometría tight es lo que hace que el sistema
+se sienta preciso, no decorativo.
+
+---
+
+## Ancho de bordes
+
+El **default es 1px**. Usar más es casi siempre un error de jerarquía: si un borde necesita
+"pegar más", probablemente lo que falla es el contraste o el espacio, no el ancho.
+
+| Ancho | Uso | Token Tailwind |
+| --- | --- | --- |
+| 0 | Elementos flush, separados por contraste de fondo | `border-0` |
+| 1px | **Default** — cards, inputs, buttons, divisores | `border` |
+| 2px | Énfasis puntual (card accent top, focus ring outline alternativo) | `border-2` |
+| 4px | Solo para bloques de cita o indicadores verticales | `border-4` |
+
+<Callout variant="warning" title="Bordes gruesos">
+  Los bordes ≥ 2px suelen competir con sombras y con la tipografía. Si sentís que algo
+  "no resalta", antes de engrosar el borde probá cambiar el `border` por `border-strong`
+  o agregar un `shadow-sm`.
+</Callout>
+
+## Escala de radios
+
+La escala cubre desde **xs (2px)** hasta **2xl (20px)**, más `full` para pills y avatars.
+El **default del sistema es `md` (6px)**: suficiente para sentir modernidad sin caer en la
+estética "pastilla".
+
+<PreviewGrid columns={4}>
+  <Preview label="radius-xs · 2px" minHeight={140}>
+    <div className="h-20 w-20 rounded-xs border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-sm · 4px" minHeight={140}>
+    <div className="h-20 w-20 rounded-sm border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-md · 6px · DEFAULT" minHeight={140}>
+    <div className="h-20 w-20 rounded-md border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-lg · 10px" minHeight={140}>
+    <div className="h-20 w-20 rounded-lg border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-xl · 14px" minHeight={140}>
+    <div className="h-20 w-20 rounded-xl border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-2xl · 20px" minHeight={140}>
+    <div className="h-20 w-20 rounded-2xl border border-border-strong bg-surface-muted" />
+  </Preview>
+  <Preview label="radius-full · 9999px" minHeight={140}>
+    <div className="h-20 w-20 rounded-full border border-border-strong bg-surface-muted" />
+  </Preview>
+</PreviewGrid>
+
+## Semántica de radios
+
+Cada radio comunica algo distinto. No los elijas por gusto — elegilos por tamaño y rol del
+elemento.
+
+| Token | Valor | Cuándo |
+| --- | --- | --- |
+| `xs` | 2px | Checkboxes, iconos cuadrados, swatches de color |
+| `sm` | 4px | Badges, tags, chips densos |
+| `md` | 6px | **Default**: botones, inputs, menus, tooltips |
+| `lg` | 10px | Cards, dialogs chicos, popovers |
+| `xl` | 14px | Cards grandes, modals, sheets |
+| `2xl` | 20px | Hero panels, zonas marketing |
+| `full` | 9999px | Avatars, pills, indicadores circulares |
+
+<Callout variant="info" title="Regla de proporción">
+  El radio **crece con el tamaño del elemento**. Un botón de 32px con radio `xl` se ve torpe;
+  una card de 320px con radio `xs` se ve industrial. Mantené la proporción ~10–15% del lado
+  más corto del elemento.
+</Callout>
+
+## Composición · nested borders
+
+Cuando anidás elementos redondeados, el **radio del hijo** debe ser menor al del padre —
+idealmente `padre - padding`. Si padre es `rounded-lg` (10px) con padding de 8px, el hijo
+debería ser `rounded-xs` (2px) para que las curvas queden concéntricas.
+
+<Preview label="Nested correctly">
+  <div className="rounded-lg border border-border bg-surface p-2">
+    <div className="rounded-xs border border-border bg-surface-muted px-6 py-3 text-sm text-text">
+      Radio del hijo = padre menos padding
+    </div>
+  </div>
+</Preview>
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - `rounded-md` para casi todo — botones, inputs, dropdowns. Es la columna vertebral.
+  - `rounded-full` para lo que **semánticamente** es circular: avatars, pills de status, switches.
+  - Radios mayores (`xl`, `2xl`) en superficies **grandes** donde el redondeo aporta respiro.
+</Callout>
+
+<Callout variant="dont">
+  - No uses `rounded-full` en botones rectangulares "porque queda amigable". Los botones pill
+    son una decisión de marca explícita, no un default.
+  - No mezcles más de 3 radios distintos en una misma vista: se ve desprolijo.
+  - No pongas `rounded-xl` en un input de 40px de alto: el redondeo se come el contenido.
+</Callout>
+
+## Accesibilidad
+
+- Los bordes son **complemento**, no señal única de estado. Un input inválido no se marca
+  solo con borde rojo: se marca con borde `danger-500` **+** ícono **+** `aria-invalid` **+**
+  mensaje visible.
+- Focus ring: Cumbre usa `shadow-focus` (ring ámbar de 3px con offset), no borde — así el
+  borde del componente no cambia de ancho al enfocarse y el layout no salta.

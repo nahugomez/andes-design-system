@@ -1,0 +1,129 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Movimiento · Cumbre",
+  description:
+    "Duraciones, easings y principios de animación en Cumbre.",
+};
+
+# Movimiento
+
+El movimiento en Cumbre **no decora, informa**. Una animación existe para comunicar
+causa-consecuencia, jerarquía o estado. Si no comunica nada, sobra.
+
+---
+
+## Principio · la duración honra la acción
+
+Un tap es instantáneo (100ms). Un hover de botón es rápido (160ms). Un panel que aparece se
+toma su tiempo (360ms) porque cambia el contexto. Cada duración **tiene un rol** y lo
+respeta.
+
+<Callout variant="info" title="Regla de oro">
+  Si no sabés qué duración usar, empezá con `base` (220ms). Es el promedio que no molesta.
+  Subí a `slow` solo si el elemento cambia de tamaño/posición significativa; bajá a `fast`
+  si es un feedback inmediato de interacción.
+</Callout>
+
+## Duraciones
+
+| Token | Valor | Rol | Ejemplo |
+| --- | --- | --- | --- |
+| `duration-instant` | 100ms | Feedback inmediato de tap | Ripple, active state de botón |
+| `duration-fast` | 160ms | Hover / focus / color swap | Cambio de color en botón, input focus |
+| `duration-base` | 220ms | Default — transiciones generales | Abrir/cerrar tooltip, toggle checkbox |
+| `duration-slow` | 360ms | Elementos que cambian de tamaño o layout | Accordion, panel slide |
+| `duration-reveal` | 540ms | Aparición de contenido nuevo | Modal entrance, toast reveal, landing hero |
+
+## Easings
+
+Un easing mal elegido hace que una animación correcta **se sienta mal**. Cumbre usa
+cuatro easings con propósitos distintos.
+
+| Token | Curva | Sensación | Cuándo |
+| --- | --- | --- | --- |
+| `ease-precise` | `cubic-bezier(0.32, 0.72, 0, 1)` | Firme, directa, sin rebote | Hover/focus, interacciones mecánicas |
+| `ease-expressive` | `cubic-bezier(0.16, 1, 0.3, 1)` | Overshoot suave, vivo | CTA destacados, reveal de hero |
+| `ease-entrance` | `cubic-bezier(0, 0, 0.2, 1)` | Empieza rápido, frena suave | Elementos que entran (modal, toast) |
+| `ease-exit` | `cubic-bezier(0.4, 0, 1, 1)` | Empieza suave, acelera afuera | Elementos que salen (close, dismiss) |
+
+<Callout variant="do">
+  - **Entrance**: usá `ease-entrance` (o `ease-expressive` si querés énfasis).
+  - **Exit**: usá `ease-exit`, siempre más corto que el entrance.
+  - **Idle/hover**: usá `ease-precise` — se siente profesional, no juguetón.
+</Callout>
+
+## Interactivo · hover con duration-base + ease-precise
+
+Pasá el mouse por encima. Mirá cómo el cambio **llega**, no corre:
+
+<Preview label="Hover con duration-base + ease-precise">
+  <button className="group inline-flex h-11 items-center gap-2 rounded-md border-none bg-action-primary px-6 text-sm font-medium text-text-on-primary transition-all duration-base ease-precise hover:-translate-y-0.5 hover:bg-action-primary-hover hover:shadow-md">
+    <span>Hover acá</span>
+    <span className="transition-transform duration-base ease-precise group-hover:translate-x-0.5">→</span>
+  </button>
+</Preview>
+
+Si cambiás `duration-base` por `duration-instant`, la misma animación se siente nerviosa.
+Si la cambiás por `duration-reveal`, se siente lenta. La duración **es parte del diseño**.
+
+## Combinaciones recomendadas
+
+| Acción | Duración | Easing |
+| --- | --- | --- |
+| Button hover / focus | `fast` | `precise` |
+| Input focus ring | `fast` | `precise` |
+| Toggle / checkbox | `base` | `precise` |
+| Tooltip show | `fast` | `entrance` |
+| Tooltip hide | `instant` | `exit` |
+| Dropdown open | `base` | `entrance` |
+| Modal entrance | `reveal` | `expressive` |
+| Modal exit | `base` | `exit` |
+| Accordion expand | `slow` | `precise` |
+| Toast in | `reveal` | `expressive` |
+| Toast out | `base` | `exit` |
+
+## Movimiento reducido
+
+Respetamos `prefers-reduced-motion: reduce` siempre. Cuando el usuario pide menos
+movimiento, cortamos durations a **0ms o `instant`** y eliminamos transforms (escalas,
+translates) — dejamos solo cambios de opacidad y color.
+
+<Callout variant="warning" title="No es opcional">
+  `prefers-reduced-motion` es WCAG 2.1 AAA (SC 2.3.3) pero en Cumbre lo tratamos como AA.
+  Usuarios con trastornos vestibulares o migrañas dependen de esto.
+</Callout>
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+## Accesibilidad
+
+- Ninguna animación critica para la comprensión del contenido.
+- `prefers-reduced-motion` respetado globalmente.
+- Animaciones de parpadeo / flash cumplen **< 3 flashes/segundo** (SC 2.3.1).
+- Autoplay de animaciones continúa solo si tiene control de pausa accesible.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Animá **transiciones de estado** (reposo → hover, cerrado → abierto).
+  - Usá **movimiento chico y rápido** para interacciones cotidianas.
+  - Reservá `reveal` y `expressive` para **momentos**: onboarding, celebraciones, errores críticos.
+</Callout>
+
+<Callout variant="dont">
+  - No animes **todo**. Un dashboard con 40 cards que aparecen escalonadas es ruido, no diseño.
+  - No uses easings rebotantes (`bounce`, `elastic`) en interfaces de trabajo — se sienten infantiles.
+  - No hagas que una acción del usuario **espere** a una animación. El usuario manda.
+</Callout>

@@ -1,0 +1,168 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
+export const metadata = {
+  title: "Checkbox · Cumbre",
+  description:
+    "Checkbox binario e indeterminate — estados, sizes y asociación con label.",
+};
+
+# Checkbox
+
+El checkbox es para decisiones **independientes entre sí**: varias opciones, cualquier
+combinación es válida. Si las opciones son mutuamente excluyentes, lo que necesitás es un
+radio — no un checkbox.
+
+---
+
+## Ejemplo básico
+
+<Preview align="start" minHeight={100}>
+  <div className="flex items-center gap-2">
+    <Checkbox id="basic-checkbox" defaultChecked />
+    <Label htmlFor="basic-checkbox">Acepto los términos y condiciones</Label>
+  </div>
+</Preview>
+
+La asociación con `<Label htmlFor>` hace que **clickear el label marque el checkbox** — es
+UX básica y a11y obligatoria.
+
+## Estados
+
+<PreviewGrid columns={3}>
+  <Preview label="Unchecked" align="start" minHeight={100}>
+    <div className="flex items-center gap-2">
+      <Checkbox id="state-unchecked" />
+      <Label htmlFor="state-unchecked">Sin marcar</Label>
+    </div>
+  </Preview>
+  <Preview label="Checked" align="start" minHeight={100}>
+    <div className="flex items-center gap-2">
+      <Checkbox id="state-checked" defaultChecked />
+      <Label htmlFor="state-checked">Marcado</Label>
+    </div>
+  </Preview>
+  <Preview label="Indeterminate" align="start" minHeight={100}>
+    <div className="flex items-center gap-2">
+      <Checkbox id="state-indeterminate" checked="indeterminate" />
+      <Label htmlFor="state-indeterminate">Selección parcial</Label>
+    </div>
+  </Preview>
+</PreviewGrid>
+
+### Indeterminate · cuándo
+
+El estado indeterminate se usa para el **padre** de un grupo de checkboxes cuando **algunos
+hijos están marcados y otros no**. Es la convención universal para "select all" parcial.
+
+```tsx
+const allChecked = items.every((i) => i.selected);
+const someChecked = items.some((i) => i.selected);
+const state = allChecked ? true : someChecked ? "indeterminate" : false;
+
+<Checkbox checked={state} onCheckedChange={toggleAll} />;
+```
+
+## Sizes
+
+<PreviewGrid columns={2}>
+  <Preview label="size sm" align="start" minHeight={100}>
+    <div className="flex items-center gap-2">
+      <Checkbox id="size-sm" size="sm" defaultChecked />
+      <Label htmlFor="size-sm" size="sm">Small (16px)</Label>
+    </div>
+  </Preview>
+  <Preview label="size md · DEFAULT" align="start" minHeight={100}>
+    <div className="flex items-center gap-2">
+      <Checkbox id="size-md" size="md" defaultChecked />
+      <Label htmlFor="size-md">Medium (18px)</Label>
+    </div>
+  </Preview>
+</PreviewGrid>
+
+| Size | Lado | Ícono | Uso |
+| --- | --- | --- | --- |
+| `sm` | 16px | 12px | Tablas densas, filtros, listas largas |
+| `md` | 18px | 14px | **Default** — formularios y selects múltiples |
+
+## Disabled
+
+<Preview align="start" minHeight={100}>
+  <div className="flex flex-col gap-3">
+    <div className="flex items-center gap-2">
+      <Checkbox id="disabled-unchecked" disabled />
+      <Label htmlFor="disabled-unchecked">Deshabilitado (sin marcar)</Label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Checkbox id="disabled-checked" disabled defaultChecked />
+      <Label htmlFor="disabled-checked">Deshabilitado (marcado)</Label>
+    </div>
+  </div>
+</Preview>
+
+## Grupo de checkboxes
+
+<Preview align="start" minHeight={200}>
+  <fieldset className="flex w-full max-w-sm flex-col gap-3">
+    <legend className="text-sm font-medium text-text">Notificaciones por email</legend>
+    <div className="flex items-center gap-2">
+      <Checkbox id="notif-news" defaultChecked />
+      <Label htmlFor="notif-news">Novedades de producto</Label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Checkbox id="notif-security" defaultChecked />
+      <Label htmlFor="notif-security">Alertas de seguridad</Label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Checkbox id="notif-weekly" />
+      <Label htmlFor="notif-weekly">Resumen semanal</Label>
+    </div>
+  </fieldset>
+</Preview>
+
+Usá `<fieldset>` + `<legend>` para agrupar checkboxes relacionados — es la forma correcta
+semánticamente, y los lectores de pantalla la anuncian como un grupo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+| --- | --- | --- | --- |
+| `checked` | `boolean \| "indeterminate"` | — | Estado controlado. |
+| `defaultChecked` | `boolean` | `false` | Estado inicial (no controlado). |
+| `onCheckedChange` | `(checked: boolean \| "indeterminate") => void` | — | Callback al cambiar. |
+| `size` | `"sm" \| "md"` | `"md"` | Tamaño del checkbox y del ícono. |
+| `disabled` | `boolean` | `false` | Deshabilita el control. |
+| `required` | `boolean` | `false` | Marca el control como requerido. |
+| `name` | `string` | — | Nombre para form submission. |
+| `value` | `string` | `"on"` | Valor en form submission. |
+| `className` | `string` | — | Clases adicionales. |
+
+Basado en [Radix Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) —
+acepta todos los props de `CheckboxPrimitive.Root`.
+
+## Accesibilidad
+
+- Implementado sobre Radix Checkbox — cumple WAI-ARIA APG.
+- Navegación por teclado: `Tab` para enfocar, `Space` para toggle.
+- Estados expuestos vía `data-state="checked" | "unchecked" | "indeterminate"`.
+- `focus-visible:shadow-focus` para foco visible (SC 2.4.7).
+- Asociación con label via `htmlFor` — clickear el label cambia el estado.
+- Contraste AA en border, fondo y el check dentro (cumple en light y dark).
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Usá checkbox cuando las opciones son **independientes** entre sí.
+  - Usá indeterminate para el padre de un grupo con selección parcial.
+  - Agrupá con `<fieldset>` + `<legend>` cuando hay un título común.
+</Callout>
+
+<Callout variant="dont">
+  - No uses checkbox para opciones **excluyentes** — eso es radio.
+  - No uses checkbox para "activar / desactivar" una funcionalidad instantánea — eso es
+    switch/toggle.
+  - No dejes checkboxes sin label visible "para ahorrar espacio". Un label oculto
+    (`sr-only`) es el mínimo aceptable.
+</Callout>

@@ -1,0 +1,136 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import { Badge } from "@/components/ui/badge";
+
+export const metadata = {
+  title: "Badge · Cumbre",
+  description:
+    "Indicador compacto de estado, categoría o metadata.",
+};
+
+# Badge
+
+Un badge comunica **estado, categoría o metadata** en un espacio mínimo. No es un botón, no
+es un link — es una **etiqueta**. Si el usuario puede interactuar con él, probablemente es
+un chip u otro componente, no un badge.
+
+---
+
+## Ejemplo básico
+
+<Preview>
+  <Badge>Nuevo</Badge>
+  <Badge variant="success" dot>Activo</Badge>
+  <Badge variant="accent">Recomendado</Badge>
+</Preview>
+
+## Variantes
+
+Ocho variantes, cada una con una lectura semántica distinta. No es decoración: **elegí la
+variante por lo que comunica, no por lo que combina**.
+
+<PreviewGrid columns={4}>
+  <Preview label="neutral · DEFAULT"><Badge>Borrador</Badge></Preview>
+  <Preview label="primary"><Badge variant="primary">Verificado</Badge></Preview>
+  <Preview label="accent"><Badge variant="accent">Nuevo</Badge></Preview>
+  <Preview label="success"><Badge variant="success">Publicado</Badge></Preview>
+  <Preview label="warning"><Badge variant="warning">Pendiente</Badge></Preview>
+  <Preview label="danger"><Badge variant="danger">Error</Badge></Preview>
+  <Preview label="info"><Badge variant="info">Beta</Badge></Preview>
+  <Preview label="outline"><Badge variant="outline">Archivado</Badge></Preview>
+</PreviewGrid>
+
+| Variante | Uso | Ejemplos |
+| --- | --- | --- |
+| `neutral` | Categoría genérica, metadata sin urgencia | "Borrador", "Sin etiquetar" |
+| `primary` | Categoría destacada del producto | "Verificado", "Oficial" |
+| `accent` | Destacado de marca, momento | "Nuevo", "Recomendado", "Featured" |
+| `success` | Estado positivo, confirmación | "Activo", "Publicado", "OK" |
+| `warning` | Estado reversible que requiere atención | "Pendiente", "En revisión" |
+| `danger` | Estado crítico, error | "Rechazado", "Error", "Vencido" |
+| `info` | Información neutral destacada | "Beta", "Nuevo feature" |
+| `outline` | Estado terciario, archivado | "Archivado", "Inactivo" |
+
+## Sizes
+
+<PreviewGrid columns={2}>
+  <Preview label="size sm">
+    <Badge size="sm" variant="success">SM</Badge>
+    <Badge size="sm" variant="warning" dot>Con dot</Badge>
+  </Preview>
+  <Preview label="size md · DEFAULT">
+    <Badge size="md" variant="success">MD</Badge>
+    <Badge size="md" variant="warning" dot>Con dot</Badge>
+  </Preview>
+</PreviewGrid>
+
+| Size | Altura | Text size | Uso |
+| --- | --- | --- | --- |
+| `sm` | 20px | 11px | Tablas densas, metadata inline, filtros compactos |
+| `md` | 24px | 12px | **Default** — cards, listados, headers |
+
+## Dot indicator
+
+El `dot` agrega un círculo de color alineado a la izquierda del texto. Útil cuando el
+badge es **específicamente sobre estado en vivo** (online/offline, available, etc.).
+
+<Preview>
+  <Badge variant="success" dot>Online</Badge>
+  <Badge variant="warning" dot>Ausente</Badge>
+  <Badge variant="danger" dot>Offline</Badge>
+  <Badge variant="neutral" dot>Sin definir</Badge>
+</Preview>
+
+<Callout variant="info" title="Cuándo usar dot">
+  El dot enfatiza que el badge **comunica un estado**, no una categoría. Es la diferencia
+  entre "etiqueta de área" (sin dot) y "presencia en vivo" (con dot).
+</Callout>
+
+## Composición · badge dentro de otros componentes
+
+El badge vive bien dentro de cards, table cells, headers y botones.
+
+<Preview>
+  <div className="flex items-center gap-3 rounded-md border border-border bg-surface px-4 py-3">
+    <div>
+      <p className="text-sm font-medium text-text">API Gateway</p>
+      <p className="text-xs text-text-secondary">v2.4.1 · us-east-1</p>
+    </div>
+    <Badge variant="success" dot>Operativo</Badge>
+  </div>
+</Preview>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+| --- | --- | --- | --- |
+| `variant` | `"neutral" \| "primary" \| "accent" \| "success" \| "warning" \| "danger" \| "info" \| "outline"` | `"neutral"` | Color y rol semántico. |
+| `size` | `"sm" \| "md"` | `"md"` | Altura y tamaño de texto. |
+| `dot` | `boolean` | `false` | Muestra un círculo de color antes del texto. |
+| `className` | `string` | — | Clases adicionales. |
+
+Además acepta todos los props nativos de `<span>` (`id`, `role`, `title`, etc.).
+
+## Accesibilidad
+
+- El badge **no es interactivo** — se renderiza como `<span>`, no como button o link.
+- El color **nunca es la única señal**: el texto ya describe el estado. Usuarios con
+  daltonismo leen el texto.
+- Contraste WCAG AA garantizado en texto sobre fondo en todas las variantes, light y dark.
+- Si el badge comunica un estado **dinámico** (p. ej. "En línea" que puede cambiar), envolvelo
+  en un contenedor con `aria-live="polite"` para que lectores anuncien el cambio.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Para comunicar **estado**, **categoría** o **metadata breve** (1–2 palabras).
+  - Elegí la variante por **semántica**, no por estética.
+  - Usá `dot` cuando el badge específicamente comunique **presencia o estado en vivo**.
+</Callout>
+
+<Callout variant="dont">
+  - No uses badge como **botón**. Si el usuario puede clickearlo, necesitás otro componente.
+  - No pongas **múltiples badges** juntos del mismo color — pierden peso. Máximo 2-3 por vista.
+  - No uses texto largo. Si no entra en 1-2 palabras, probablemente no es un badge.
+  - No uses `accent` para cosas permanentes — el ámbar es para "nuevo / destacado / temporal".
+</Callout>

@@ -1,0 +1,155 @@
+import { Callout } from "@/components/docs/callout";
+import { ColorScale, ColorSwatch } from "@/components/docs/color-swatch";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+
+export const metadata = {
+  title: "Colores · Fundaciones",
+  description:
+    "Paleta, escalas y roles semánticos del sistema Cumbre.",
+};
+
+# Colores
+
+La paleta de Cumbre se compone de **cuatro familias**: primary (navy), neutral (grises fríos),
+accent (ámbar) y semantic (éxito, advertencia, error, info). Cada familia tiene una **escala
+de 11 pasos** (50 → 950) que se deriva del color base.
+
+---
+
+## Primary · Navy "Cumbre"
+
+Derivada del logo (`#17203F` = paso 800). Es el color estructural del sistema: textos, surfaces
+primarias, acciones por defecto.
+
+<ColorScale
+  name="Primary / Navy"
+  steps={[
+    { step: 50, className: "bg-primary-50" },
+    { step: 100, className: "bg-primary-100" },
+    { step: 200, className: "bg-primary-200" },
+    { step: 300, className: "bg-primary-300" },
+    { step: 400, className: "bg-primary-400" },
+    { step: 500, className: "bg-primary-500" },
+    { step: 600, className: "bg-primary-600" },
+    { step: 700, className: "bg-primary-700" },
+    { step: 800, className: "bg-primary-800" },
+    { step: 900, className: "bg-primary-900" },
+    { step: 950, className: "bg-primary-950" },
+  ]}
+/>
+
+## Neutral · Grises fríos
+
+Grises con un leve tinte azul para armonizar con el navy. Se usan en bordes, textos
+secundarios, surfaces sutiles y fondos.
+
+<ColorScale
+  name="Neutral"
+  steps={[
+    { step: 50, className: "bg-neutral-50" },
+    { step: 100, className: "bg-neutral-100" },
+    { step: 200, className: "bg-neutral-200" },
+    { step: 300, className: "bg-neutral-300" },
+    { step: 400, className: "bg-neutral-400" },
+    { step: 500, className: "bg-neutral-500" },
+    { step: 600, className: "bg-neutral-600" },
+    { step: 700, className: "bg-neutral-700" },
+    { step: 800, className: "bg-neutral-800" },
+    { step: 900, className: "bg-neutral-900" },
+    { step: 950, className: "bg-neutral-950" },
+  ]}
+/>
+
+## Accent · Ámbar
+
+El ámbar evoca el sol sobre la cordillera. Es nuestro color de **énfasis**. Se usa para
+**momentos**, no para estructura.
+
+<ColorScale
+  name="Accent / Ámbar"
+  steps={[
+    { step: 50, className: "bg-accent-50" },
+    { step: 100, className: "bg-accent-100" },
+    { step: 200, className: "bg-accent-200" },
+    { step: 300, className: "bg-accent-300" },
+    { step: 400, className: "bg-accent-400" },
+    { step: 500, className: "bg-accent-500" },
+    { step: 600, className: "bg-accent-600" },
+    { step: 700, className: "bg-accent-700" },
+    { step: 800, className: "bg-accent-800" },
+    { step: 900, className: "bg-accent-900" },
+    { step: 950, className: "bg-accent-950" },
+  ]}
+/>
+
+<Callout variant="do" title="Cuándo usar el accent">
+  - CTA principal de una vista (uno solo, nunca dos accent CTAs en paralelo).
+  - Indicador de foco y hover en elementos interactivos.
+  - Borde superior ocasional en cards destacadas.
+  - Estados de "nuevo", "recomendado", "featured".
+</Callout>
+
+<Callout variant="dont" title="Cuándo NO usar el accent">
+  - Como fondo de grandes áreas — satura y cansa la vista.
+  - Para textos de lectura — el contraste no llega a AA en muchos tamaños.
+  - En más de una acción por vista — perdés jerarquía.
+</Callout>
+
+## Semantic
+
+Los colores semánticos comunican estado. Solo se usan **para comunicar ese estado**, no
+decorativamente.
+
+<PreviewGrid columns={4}>
+  <ColorSwatch name="Success" token="success-500" className="bg-success-500" contrast="dark" />
+  <ColorSwatch name="Warning" token="warning-500" className="bg-warning-500" contrast="dark" />
+  <ColorSwatch name="Danger" token="danger-500" className="bg-danger-500" contrast="dark" />
+  <ColorSwatch name="Info" token="info-500" className="bg-info-500" contrast="dark" />
+</PreviewGrid>
+
+| Familia | Uso | No uso |
+| --- | --- | --- |
+| Success | Confirmación, aprobación, estado "ok". | "Tema" de la vista, marca visual. |
+| Warning | Advertencia reversible, "revisá esto". | Rechazo, error grave. |
+| Danger | Error, rechazo, acción destructiva. | Llamar la atención sin riesgo real. |
+| Info | Mensaje neutral informativo. | Reemplazar al primary como estructura. |
+
+---
+
+## Tokens semánticos de rol
+
+Los componentes **no consumen escalas directamente**. Consumen **tokens de rol** que
+mapean a la escala según el tema. Esto permite theming sin tocar componentes.
+
+| Token | Light | Dark | Uso |
+| --- | --- | --- | --- |
+| `background` | neutral-0 | primary-950 | Fondo de página |
+| `surface` | neutral-0 | primary-900 | Tarjeta, panel |
+| `surface-subtle` | neutral-50 | primary-950 | Zona secundaria |
+| `surface-muted` | neutral-100 | primary-800 | Hover de zonas |
+| `border` | neutral-200 | primary-700 | Bordes default |
+| `border-strong` | neutral-300 | primary-600 | Bordes acentuados |
+| `text` | primary-900 | neutral-50 | Texto principal |
+| `text-secondary` | neutral-600 | neutral-300 | Texto secundario |
+| `text-tertiary` | neutral-500 | neutral-400 | Hints, labels discretos |
+| `action-primary` | primary-800 | accent-500 | Botón primario |
+| `action-accent` | accent-500 | accent-500 | Botón accent |
+| `focus-ring` | accent-500 | accent-500 | Ring de foco |
+
+<Callout variant="info" title="Regla de oro">
+  Al escribir un componente nuevo, **usá tokens de rol primero** (`bg-surface`, `text-text-secondary`).
+  Recurrí a la escala cruda (`bg-primary-800`) solo cuando el rol semántico no existe o no aplica.
+</Callout>
+
+## Accesibilidad de contraste
+
+Todas las combinaciones usadas por componentes Cumbre cumplen **WCAG 2.1 AA mínimo** (4.5:1 para
+texto normal, 3:1 para texto grande). Los pares más importantes:
+
+| Texto | Fondo | Ratio |
+| --- | --- | --- |
+| primary-900 | neutral-0 | 15.6 : 1 ✓ AAA |
+| primary-800 (CTA) | neutral-0 | 12.1 : 1 ✓ AAA |
+| neutral-600 | neutral-0 | 5.4 : 1 ✓ AA |
+| accent-600 | neutral-0 | 4.8 : 1 ✓ AA |
+| neutral-50 | primary-900 | 14.2 : 1 ✓ AAA (dark) |

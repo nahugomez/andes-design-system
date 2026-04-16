@@ -1,0 +1,212 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+export const metadata = {
+  title: "Card · Cumbre",
+  description:
+    "Contenedor compuesto para agrupar información relacionada.",
+};
+
+# Card
+
+La card es el contenedor más versátil del sistema: agrupa información relacionada en una
+unidad visual. En Cumbre se compone de **piezas atómicas** (`Card`, `CardHeader`,
+`CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) que podés combinar según lo
+que el contenido pida.
+
+---
+
+## Ejemplo básico
+
+<Preview>
+  <Card className="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Historial clínico</CardTitle>
+      <CardDescription>Resumen de los últimos 30 días del paciente.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm text-text-secondary">
+        15 consultas, 3 estudios pendientes, 1 alerta de medicación.
+      </p>
+    </CardContent>
+    <CardFooter>
+      <Button variant="secondary" size="sm">Ver detalle</Button>
+    </CardFooter>
+  </Card>
+</Preview>
+
+## Anatomía
+
+Una card completa tiene cinco partes, todas opcionales salvo `Card` (el wrapper):
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Título</CardTitle>
+    <CardDescription>Bajada</CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Cuerpo principal */}
+  </CardContent>
+  <CardFooter>
+    {/* Acciones, metadata */}
+  </CardFooter>
+</Card>
+```
+
+- `CardHeader`: padding arriba, sin borde. Ideal para título + descripción.
+- `CardTitle`: `<h3>` por default — respeta jerarquía. Semibold, tight.
+- `CardDescription`: `<p>` secondary, pensado para subtítulos.
+- `CardContent`: padding default, cuerpo principal.
+- `CardFooter`: borde superior sutil, acciones alineadas.
+
+## Variantes
+
+<PreviewGrid columns={2}>
+  <Preview label="default"><Card variant="default" className="w-full max-w-xs" padding="md">Card default con border + shadow-xs</Card></Preview>
+  <Preview label="outline"><Card variant="outline" className="w-full max-w-xs" padding="md">Card outline con border-strong</Card></Preview>
+  <Preview label="elevated"><Card variant="elevated" className="w-full max-w-xs" padding="md">Card elevated con shadow-md (hover shadow-lg)</Card></Preview>
+  <Preview label="flat"><Card variant="flat" className="w-full max-w-xs" padding="md">Card flat: surface-subtle, sin borde</Card></Preview>
+</PreviewGrid>
+
+| Variante | Visual | Cuándo |
+| --- | --- | --- |
+| `default` | Border + shadow-xs | Cards en listas, la mayoría de los casos |
+| `outline` | Border-strong, sin shadow | Formularios, zonas editoriales, "bloques fuertes" |
+| `elevated` | Shadow-md (hover: lg) | Cards destacadas, clickables, hover affordance |
+| `flat` | surface-subtle, sin border ni shadow | Zonas apoyadas en otros contenedores, summaries |
+
+## Padding
+
+<PreviewGrid columns={4}>
+  <Preview label="padding=none"><Card className="w-full" padding="none"><div className="bg-accent-100 p-0 text-center text-xs">Sin padding</div></Card></Preview>
+  <Preview label="padding=sm"><Card className="w-full" padding="sm">sm · 16px</Card></Preview>
+  <Preview label="padding=md"><Card className="w-full" padding="md">md · 24px</Card></Preview>
+  <Preview label="padding=lg"><Card className="w-full" padding="lg">lg · 32px</Card></Preview>
+</PreviewGrid>
+
+<Callout variant="info" title="Padding vs subcomponentes">
+  Si usás `CardHeader`, `CardContent` y `CardFooter`, cada uno ya trae su propio padding
+  — dejá la card en `padding="none"` (default). Usá `padding="md"` solo cuando la card
+  tiene contenido directo (sin subcomponentes).
+</Callout>
+
+## Accent
+
+El `accent` agrega una **línea ámbar** arriba o a la izquierda. Sirve para señalar cards
+destacadas, featured o con un tipo especial.
+
+<PreviewGrid columns={3}>
+  <Preview label="accent=none"><Card accent="none" className="w-full max-w-xs" padding="md">Sin accent</Card></Preview>
+  <Preview label="accent=top"><Card accent="top" className="w-full max-w-xs" padding="md">Accent arriba</Card></Preview>
+  <Preview label="accent=left"><Card accent="left" className="w-full max-w-xs" padding="md">Accent a la izquierda</Card></Preview>
+</PreviewGrid>
+
+<Callout variant="do">
+  Usá `accent="top"` para featured items (plan destacado, proyecto destacado, card
+  "recomendada"). Usá `accent="left"` para llamar la atención en listas densas donde
+  todas las cards tienen el mismo ancho.
+</Callout>
+
+## Radius
+
+<PreviewGrid columns={3}>
+  <Preview label="radius=md"><Card radius="md" className="w-full max-w-xs" padding="md">Radius md · 6px</Card></Preview>
+  <Preview label="radius=lg · DEFAULT"><Card radius="lg" className="w-full max-w-xs" padding="md">Radius lg · 10px</Card></Preview>
+  <Preview label="radius=xl"><Card radius="xl" className="w-full max-w-xs" padding="md">Radius xl · 14px</Card></Preview>
+</PreviewGrid>
+
+El default es `lg` (10px). Subí a `xl` para cards grandes de marketing; bajá a `md` para
+grillas densas con muchas cards (radius chicos se leen mejor a escala).
+
+## Ejemplo compuesto
+
+Una card real combina todo: subcomponentes, otras piezas del sistema adentro (Badge,
+Button), y variantes bien elegidas.
+
+<Preview align="start" minHeight={280}>
+  <Card variant="elevated" accent="top" className="w-full max-w-sm">
+    <CardHeader>
+      <div className="flex items-center justify-between">
+        <CardTitle>Plan Pro</CardTitle>
+        <Badge variant="accent">Recomendado</Badge>
+      </div>
+      <CardDescription>Para equipos que necesitan acceso completo.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="flex items-baseline gap-1">
+        <span className="text-3xl font-light tracking-tight text-text">$49</span>
+        <span className="text-sm text-text-secondary">/mes</span>
+      </div>
+      <ul className="mt-4 flex flex-col gap-2 text-sm text-text-secondary">
+        <li>· Usuarios ilimitados</li>
+        <li>· Reportes avanzados</li>
+        <li>· Soporte prioritario</li>
+      </ul>
+    </CardContent>
+    <CardFooter>
+      <Button variant="accent" className="w-full">Empezar prueba</Button>
+    </CardFooter>
+  </Card>
+</Preview>
+
+## Props
+
+### Card
+
+| Prop | Tipo | Default | Descripción |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "elevated" \| "flat"` | `"default"` | Estilo visual. |
+| `padding` | `"none" \| "sm" \| "md" \| "lg"` | `"none"` | Padding interno (ignorar si se usan subcomponentes). |
+| `accent` | `"none" \| "top" \| "left"` | `"none"` | Línea accent ámbar. |
+| `radius` | `"md" \| "lg" \| "xl"` | `"lg"` | Radio de las esquinas. |
+| `className` | `string` | — | Clases adicionales. |
+
+### Subcomponentes
+
+| Componente | Elemento | Propósito |
+| --- | --- | --- |
+| `CardHeader` | `<div>` | Header con padding. |
+| `CardTitle` | `<h3>` | Título semibold, tight. |
+| `CardDescription` | `<p>` | Descripción `text-secondary`. |
+| `CardContent` | `<div>` | Cuerpo principal con padding default. |
+| `CardFooter` | `<div>` | Footer con border-top y acciones. |
+
+Todos aceptan los props nativos del elemento HTML correspondiente y `className`.
+
+## Accesibilidad
+
+- `CardTitle` es `<h3>` — ajustá la jerarquía de headings de la página para que quede
+  coherente (un H1 de página, H2 en secciones, H3 para cards).
+- Si la card entera es clickable, envolvela en un **único** `<a>` o `<button>` — no
+  metas links múltiples adentro (a11y confusa). Alternativa: "stretched link" con el
+  link principal cubriendo la card vía `position: absolute; inset: 0`.
+- Contenido accionable dentro de la card (Button, Badge interactivo) queda tabulable en
+  orden natural.
+- Contraste de `CardDescription` (`text-secondary`) cumple AA sobre `surface`.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Cuando tenés **información relacionada** que merece agruparse visualmente.
+  - Para repetir estructura en listas (grid de productos, lista de pacientes).
+  - Combiná subcomponentes en vez de custom markup — mantenés espaciado y tipografía
+    consistentes.
+</Callout>
+
+<Callout variant="dont">
+  - No uses card para **un solo item aislado** que sería texto corrido. Las cards implican
+    repetición o comparación.
+  - No anides cards dentro de cards. Si necesitás eso, repensá la arquitectura.
+  - No uses `elevated` en grids de 20+ items: tanta sombra satura la página.
+</Callout>

@@ -1,0 +1,159 @@
+/*
+ * Cumbre — Design System de AndesIA
+ * Tokens CSS para consumo externo.
+ *
+ * Importá este archivo UNA VEZ en el entry de tu aplicación:
+ *   import "@andesia/cumbre/styles.css";
+ *
+ * Requiere que tengas Tailwind configurado con `cumbrePreset`.
+ * NO incluye directivas @tailwind — las tenés que tener en tu propio CSS global.
+ */
+
+:root {
+  /* ─── Primary (Navy Cumbre) ─── */
+  --cumbre-primary-50: 225 30% 97%;
+  --cumbre-primary-100: 225 28% 92%;
+  --cumbre-primary-200: 225 26% 84%;
+  --cumbre-primary-300: 225 23% 70%;
+  --cumbre-primary-400: 225 22% 54%;
+  --cumbre-primary-500: 225 28% 39%;
+  --cumbre-primary-600: 225 32% 30%;
+  --cumbre-primary-700: 225 35% 23%;
+  --cumbre-primary-800: 227 47% 17%; /* #17203F — brand */
+  --cumbre-primary-900: 225 55% 12%;
+  --cumbre-primary-950: 225 63% 7%;
+
+  /* ─── Neutral (grises fríos, leve tinte azul) ─── */
+  --cumbre-neutral-0: 0 0% 100%;
+  --cumbre-neutral-50: 220 20% 97%;
+  --cumbre-neutral-100: 220 18% 95%;
+  --cumbre-neutral-200: 220 18% 90%;
+  --cumbre-neutral-300: 220 15% 80%;
+  --cumbre-neutral-400: 220 12% 61%;
+  --cumbre-neutral-500: 220 10% 44%;
+  --cumbre-neutral-600: 220 12% 33%;
+  --cumbre-neutral-700: 220 13% 24%;
+  --cumbre-neutral-800: 220 15% 16%;
+  --cumbre-neutral-900: 220 17% 9%;
+  --cumbre-neutral-950: 220 22% 5%;
+
+  /* ─── Accent (Ámbar — sol sobre la cordillera) ─── */
+  --cumbre-accent-50: 40 90% 96%;
+  --cumbre-accent-100: 40 92% 90%;
+  --cumbre-accent-200: 40 92% 80%;
+  --cumbre-accent-300: 40 87% 68%;
+  --cumbre-accent-400: 40 85% 59%;
+  --cumbre-accent-500: 36 80% 58%;
+  --cumbre-accent-600: 36 73% 45%;
+  --cumbre-accent-700: 36 75% 35%;
+  --cumbre-accent-800: 36 70% 27%;
+  --cumbre-accent-900: 36 70% 18%;
+  --cumbre-accent-950: 36 72% 11%;
+
+  /* ─── Semantic ─── */
+  --cumbre-success-500: 153 67% 37%;
+  --cumbre-success-100: 153 60% 92%;
+  --cumbre-success-700: 153 70% 27%;
+  --cumbre-warning-500: 24 95% 53%;
+  --cumbre-warning-100: 24 95% 92%;
+  --cumbre-warning-700: 24 85% 38%;
+  --cumbre-danger-500: 352 72% 48%;
+  --cumbre-danger-100: 352 75% 94%;
+  --cumbre-danger-700: 352 75% 36%;
+  --cumbre-info-500: 192 85% 39%;
+  --cumbre-info-100: 192 70% 92%;
+  --cumbre-info-700: 192 85% 28%;
+
+  /* ─── Role tokens (consumidos por los componentes) ─── */
+  --background: var(--cumbre-neutral-0);
+  --foreground: var(--cumbre-primary-900);
+  --surface: var(--cumbre-neutral-0);
+  --surface-subtle: var(--cumbre-neutral-50);
+  --surface-muted: var(--cumbre-neutral-100);
+  --surface-elevated: var(--cumbre-neutral-0);
+  --border: var(--cumbre-neutral-200);
+  --border-strong: var(--cumbre-neutral-300);
+  --border-subtle: var(--cumbre-neutral-100);
+  --text-primary: var(--cumbre-primary-900);
+  --text-secondary: var(--cumbre-neutral-600);
+  --text-tertiary: var(--cumbre-neutral-500);
+  --text-on-primary: var(--cumbre-neutral-0);
+  --text-on-accent: var(--cumbre-primary-900);
+  --action-primary: var(--cumbre-primary-800);
+  --action-primary-hover: var(--cumbre-primary-700);
+  --action-primary-active: var(--cumbre-primary-900);
+  --action-accent: var(--cumbre-accent-500);
+  --action-accent-hover: var(--cumbre-accent-600);
+  --action-accent-active: var(--cumbre-accent-700);
+  --focus-ring: var(--cumbre-accent-500);
+  --focus-ring-offset: var(--cumbre-neutral-0);
+
+  /* ─── Radii ─── */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* ─── Shadows ─── */
+  --shadow-xs: 0 1px 2px 0 hsl(227 47% 17% / 0.04);
+  --shadow-sm: 0 1px 3px 0 hsl(227 47% 17% / 0.06), 0 1px 2px -1px hsl(227 47% 17% / 0.04);
+  --shadow-md: 0 4px 8px -2px hsl(227 47% 17% / 0.08), 0 2px 4px -2px hsl(227 47% 17% / 0.06);
+  --shadow-lg: 0 12px 24px -6px hsl(227 47% 17% / 0.10), 0 4px 8px -4px hsl(227 47% 17% / 0.06);
+  --shadow-xl: 0 24px 48px -12px hsl(227 47% 17% / 0.16), 0 8px 16px -8px hsl(227 47% 17% / 0.08);
+  --shadow-2xl: 0 32px 64px -16px hsl(227 47% 17% / 0.22);
+  --shadow-focus: 0 0 0 3px hsl(var(--focus-ring) / 0.35);
+
+  /* ─── Motion ─── */
+  --duration-instant: 100ms;
+  --duration-fast: 160ms;
+  --duration-base: 220ms;
+  --duration-slow: 360ms;
+  --duration-reveal: 540ms;
+  --ease-precise: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-expressive: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-entrance: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.dark {
+  --background: var(--cumbre-primary-950);
+  --foreground: var(--cumbre-neutral-100);
+  --surface: var(--cumbre-primary-900);
+  --surface-subtle: var(--cumbre-primary-950);
+  --surface-muted: var(--cumbre-primary-800);
+  --surface-elevated: var(--cumbre-primary-800);
+  --border: var(--cumbre-primary-700);
+  --border-strong: var(--cumbre-primary-600);
+  --border-subtle: var(--cumbre-primary-800);
+  --text-primary: var(--cumbre-neutral-50);
+  --text-secondary: var(--cumbre-neutral-300);
+  --text-tertiary: var(--cumbre-neutral-400);
+  --text-on-primary: var(--cumbre-primary-950);
+  --text-on-accent: var(--cumbre-primary-950);
+  --action-primary: var(--cumbre-accent-500);
+  --action-primary-hover: var(--cumbre-accent-400);
+  --action-primary-active: var(--cumbre-accent-600);
+  --focus-ring-offset: var(--cumbre-primary-950);
+  --shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.20);
+  --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.24), 0 1px 2px -1px hsl(0 0% 0% / 0.18);
+  --shadow-md: 0 4px 8px -2px hsl(0 0% 0% / 0.28), 0 2px 4px -2px hsl(0 0% 0% / 0.20);
+  --shadow-lg: 0 12px 24px -6px hsl(0 0% 0% / 0.36), 0 4px 8px -4px hsl(0 0% 0% / 0.24);
+  --shadow-xl: 0 24px 48px -12px hsl(0 0% 0% / 0.44), 0 8px 16px -8px hsl(0 0% 0% / 0.28);
+  --shadow-2xl: 0 32px 64px -16px hsl(0 0% 0% / 0.55);
+}
+
+/* Focus-visible universal — precision ring para cualquier elemento interactivo */
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* Selección con el accent */
+::selection {
+  background-color: hsl(var(--cumbre-accent-300));
+  color: hsl(var(--cumbre-primary-900));
+}

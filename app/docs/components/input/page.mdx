@@ -1,0 +1,183 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export const metadata = {
+  title: "Input · Cumbre",
+  description:
+    "Campo de texto de Cumbre — sizes, estados, icons y asociación con Label.",
+};
+
+# Input
+
+El input es la puerta por la que entra la intención del usuario. En Cumbre viene con
+**labels asociados**, **hints**, **mensajes de error** y **soporte de íconos** listo — sin
+que tengas que pensarlo.
+
+---
+
+## Ejemplo básico
+
+<Preview align="start" minHeight={140}>
+  <div className="flex w-full max-w-sm flex-col gap-1.5">
+    <Label htmlFor="basic-email">Email</Label>
+    <Input id="basic-email" type="email" placeholder="vos@andesia.com" />
+  </div>
+</Preview>
+
+La asociación explícita con `<Label htmlFor>` + `id` del input es **mandatoria**. Sin eso,
+clickear el label no enfoca el input y los lectores de pantalla no leen el label al
+enfocar.
+
+## Sizes
+
+<PreviewGrid columns={3}>
+  <Preview label="size sm" align="start" minHeight={100}>
+    <div className="w-full max-w-xs">
+      <Input size="sm" placeholder="Tamaño sm" />
+    </div>
+  </Preview>
+  <Preview label="size md · DEFAULT" align="start" minHeight={100}>
+    <div className="w-full max-w-xs">
+      <Input size="md" placeholder="Tamaño md" />
+    </div>
+  </Preview>
+  <Preview label="size lg" align="start" minHeight={100}>
+    <div className="w-full max-w-xs">
+      <Input size="lg" placeholder="Tamaño lg" />
+    </div>
+  </Preview>
+</PreviewGrid>
+
+| Size | Altura | Padding | Uso |
+| --- | --- | --- | --- |
+| `sm` | 32px | 10px | Formularios compactos, toolbars, filtros |
+| `md` | 40px | 12px | **Default** — formularios estándar |
+| `lg` | 44px | 16px | Inputs de landing, búsquedas hero |
+
+## Hint
+
+Un hint es **información auxiliar no crítica** debajo del input. Se asocia automáticamente
+con `aria-describedby`.
+
+<Preview align="start" minHeight={140}>
+  <div className="flex w-full max-w-sm flex-col gap-1.5">
+    <Label htmlFor="hint-pass">Contraseña</Label>
+    <Input id="hint-pass" type="password" hint="Mínimo 8 caracteres, uno mayúsculo y un número." />
+  </div>
+</Preview>
+
+## Error
+
+El estado de error:
+
+- Aplica `border-danger-500` al input.
+- Marca `aria-invalid="true"`.
+- Asocia el mensaje con `aria-describedby`.
+- Agrega `role="alert"` al mensaje para que lectores lo anuncien inmediatamente.
+
+<Preview align="start" minHeight={140}>
+  <div className="flex w-full max-w-sm flex-col gap-1.5">
+    <Label htmlFor="error-email">Email</Label>
+    <Input
+      id="error-email"
+      type="email"
+      defaultValue="no-es-un-email"
+      error="Formato inválido. Probá con vos@ejemplo.com."
+    />
+  </div>
+</Preview>
+
+<Callout variant="info" title="Error vs hint">
+  Si hay `error`, el componente **oculta el hint** automáticamente. Un input no muestra las
+  dos cosas al mismo tiempo — el error es más prioritario.
+</Callout>
+
+## Icons · leading y trailing
+
+Podés meter un ícono a la izquierda, a la derecha, o ambos. Los íconos van como `ReactNode`
+y se renderizan decorativos (`aria-hidden`). No son interactivos.
+
+<Preview align="start" minHeight={160}>
+  <div className="flex w-full max-w-sm flex-col gap-3">
+    <Input
+      placeholder="Buscar pacientes..."
+      leadingIcon={
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+      }
+    />
+    <Input
+      placeholder="usuario@andesia.com"
+      trailingIcon={
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+      }
+    />
+  </div>
+</Preview>
+
+<Callout variant="warning" title="¿Necesitás un ícono interactivo?">
+  Si el ícono debe **ejecutar una acción** (mostrar/ocultar password, limpiar input),
+  no lo pases como `trailingIcon` — armá tu propio componente con un `<button>` dentro.
+  El `trailingIcon` es estrictamente decorativo.
+</Callout>
+
+## Disabled
+
+<Preview align="start" minHeight={100}>
+  <div className="w-full max-w-sm">
+    <Input disabled placeholder="Campo deshabilitado" />
+  </div>
+</Preview>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Altura, padding y tamaño de fuente. |
+| `invalid` | `boolean` | `false` | Fuerza el estado inválido sin necesidad de `error`. |
+| `error` | `ReactNode` | — | Mensaje de error bajo el input. Activa `aria-invalid`. |
+| `hint` | `ReactNode` | — | Texto auxiliar bajo el input. Se asocia vía `aria-describedby`. |
+| `leadingIcon` | `ReactNode` | — | Ícono decorativo a la izquierda. |
+| `trailingIcon` | `ReactNode` | — | Ícono decorativo a la derecha. |
+| `containerClassName` | `string` | — | Clases para el wrapper (`<div>` que envuelve input + hint/error). |
+| `className` | `string` | — | Clases para el `<input>` en sí. |
+
+Además acepta todos los props nativos de `<input>` excepto `size` nativa (Cumbre la
+sobreescribe por la variante). Soporta `type`, `value`/`defaultValue`, `onChange`,
+`placeholder`, `required`, `autoComplete`, etc.
+
+## Accesibilidad
+
+- **Label asociado siempre** con `htmlFor` + `id`. Nunca texto suelto cerca.
+- `aria-invalid="true"` cuando hay error.
+- `aria-describedby` apunta al hint y/o al error — se lee automáticamente al enfocar.
+- `role="alert"` en el mensaje de error para anuncio inmediato.
+- `focus-visible:shadow-focus` para foco visible (WCAG SC 2.4.7).
+- Contraste de placeholder ≥ 4.5:1 (mejora sobre la regla común de usar `text-gray-400`
+  débil).
+- Soporta `required` nativo + `aria-required` si lo pasás.
+- Autocompletá con `autoComplete` apropiado — password managers y a11y lo agradecen.
+
+## Cuándo usar / Cuándo NO usar
+
+<Callout variant="do">
+  - Asociá siempre con `<Label htmlFor>` y `id`.
+  - Usá `type` nativo apropiado: `email`, `tel`, `url`, `number`, `password`. El teclado
+    móvil se adapta y la validación nativa ayuda.
+  - Mostrá errores **después** de que el usuario dejó el campo (`onBlur`), no mientras
+    tipea.
+</Callout>
+
+<Callout variant="dont">
+  - No uses el placeholder **como label**. Al tipear desaparece y se pierde el contexto.
+  - No pongas más de un ícono de cada lado. Si necesitás dos acciones, repensá el campo.
+  - No deshabilites inputs "por ahora" sin explicar por qué — usá `readOnly` o estado
+    explicativo.
+</Callout>
