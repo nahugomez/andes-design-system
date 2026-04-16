@@ -10,8 +10,6 @@ export const metadata = {
 Cumbre se consume como paquete npm en cualquier proyecto AndesIA. Ideal: proyectos basados en
 **Next.js 14+**, **React 18+** y **Tailwind CSS 3.4+**.
 
----
-
 ## 1. Instalá el paquete
 
 ```bash
@@ -98,8 +96,6 @@ export function Example() {
 
 Listo. Ya estás usando el sistema.
 
----
-
 ## Compatibilidad
 
 | Runtime | Versión mínima |
@@ -108,9 +104,3 @@ Listo. Ya estás usando el sistema.
 | React | 18.0 · 19.0 |
 | Next.js | 14.0 |
 | Tailwind CSS | 3.4 |
-
-## ¿Problemas?
-
-- **Las clases no se aplican.** Verificá el `content` glob en `tailwind.config.ts` (paso 3).
-- **El dark mode no cambia.** Asegurate de envolver la app con `<ThemeProvider>` y usar `darkMode: "class"` en Tailwind.
-- **Los radius se ven como círculos.** Revisá que `styles.css` de Cumbre esté importado antes que tu CSS global.
