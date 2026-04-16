@@ -35,7 +35,7 @@ export function Logo({
         />
       </svg>
       {withWordmark ? (
-        <span className="text-lg font-semibold tracking-[-0.02em] text-text">
+        <span className="text-lg font-semibold leading-none tracking-[-0.02em] text-text">
           Cumbre
         </span>
       ) : null}

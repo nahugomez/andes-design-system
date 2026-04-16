@@ -21,7 +21,7 @@ export function SiteHeader({ className }: { className?: string }) {
           <Logo withWordmark size={26} />
           <span
             aria-hidden
-            className="hidden text-2xs uppercase tracking-[0.18em] text-text-tertiary sm:inline"
+            className="hidden text-2xs uppercase leading-none tracking-[0.18em] text-text-tertiary sm:inline"
           >
             v0.1 · AndesIA
           </span>
