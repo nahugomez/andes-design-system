@@ -75,10 +75,10 @@ export function Callout({ variant = "info", title, children, className }: Callou
         className,
       )}
     >
-      <div className="flex items-start gap-3">
-        <span className="mt-0.5">{style.icon}</span>
+      <div className="flex items-start gap-2.5">
+        <span className="flex h-5 shrink-0 items-center">{style.icon}</span>
         <div className="min-w-0 flex-1">
-          <p className="mb-1 text-sm font-semibold text-text">
+          <p className="mb-1.5 text-sm font-semibold leading-5 text-text">
             {title ?? style.titleDefault}
           </p>
           <div className="text-text-secondary">{children}</div>
