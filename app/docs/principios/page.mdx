@@ -9,14 +9,14 @@ export const metadata = {
 # Principios _de diseño_
 
 Todo sistema sin principios termina siendo una colección de componentes. Cumbre se apoya
-en **cinco ideas** que aplicamos cuando hay que tomar una decisión difícil.
+en **cinco ideas** para aplicar cuando hay que tomar una decisión difícil.
 
 ---
 
 ## 1. Concepto antes que código
 
-Antes de escribir un componente, entendemos **por qué existe y qué problema resuelve**.
-Un componente sin razón clara termina duplicado, mal usado, o simplemente no usado.
+Antes de escribir un componente, entendé **por qué existe y qué problema resuelve**.
+Un componente sin razón clara termina duplicado, mal usado, o sin uso.
 
 <Callout variant="do" title="Cuándo aplicar">
   Al proponer un componente nuevo: escribí en una oración qué problema resuelve y para qué
@@ -26,8 +26,8 @@ Un componente sin razón clara termina duplicado, mal usado, o simplemente no us
 ## 2. Precisión sobre decoración
 
 Cada elemento visual — un borde, una sombra, un radio — tiene una función. El lenguaje
-geométrico de Cumbre es intencional: radios tight, shadows navy-tinted, grillas consistentes.
-**Si algo se siente "decorativo", probablemente sobra.**
+geométrico de Cumbre es intencional: radios ajustados, sombras con tinte navy, grillas consistentes.
+**Si algo se siente "decorativo", sobra.**
 
 ## 3. Jerarquía por contraste, no por color
 
@@ -54,22 +54,22 @@ No es opcional.
 
 ## 5. Coherencia sobre individualidad
 
-Cuando un producto necesita algo especial, **primero** revisamos si el sistema lo resuelve.
-**Segundo**, si lo puede resolver con una pequeña extensión. Solo **tercero** consideramos
-crear algo propio — y si eso pasa, discutimos si debe subir al sistema.
+Cuando un producto necesita algo especial, **primero** revisá si el sistema lo resuelve.
+**Segundo**, si lo puede resolver con una pequeña extensión. Solo **tercero** considerá
+crear algo propio — y si eso pasa, discutilo con el equipo para decidir si debe subir al sistema.
 
 <Callout variant="warning" title="Cuidado con los forks">
   Una copia local de un componente para "tunearlo" es deuda técnica en el día cero.
-  Si necesitás cambiar un componente, pedilo al sistema: si el caso se repite, suma.
+  Si necesitás cambiar un componente, proponelo al equipo del sistema: si el caso se repite, suma.
 </Callout>
 
 ---
 
 ## Regla de decisión
 
-Ante cualquier duda de diseño o código, pasamos la decisión por estas preguntas en orden:
+Ante cualquier duda de diseño o código, pasá la decisión por estas preguntas en orden:
 
-1. ¿Resuelve un problema real que tenemos hoy?
+1. ¿Resuelve un problema real que hay hoy?
 2. ¿Lo resuelve con el lenguaje y tokens existentes?
 3. ¿Mejora la coherencia entre productos AndesIA, o la empeora?
 4. ¿Es accesible por default, o hay que recordárselo al consumer?
