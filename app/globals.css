@@ -289,6 +289,44 @@
   .prose-cumbre .not-prose * {
     margin-top: initial;
   }
+
+  /* Listas dentro de Callouts u otros .not-prose — sin dash ámbar, dot neutro y compacto */
+  .prose-cumbre .not-prose ul,
+  .prose-cumbre .not-prose ol {
+    padding-left: 1rem;
+    color: inherit;
+  }
+
+  .prose-cumbre .not-prose ul > li,
+  .prose-cumbre .not-prose ol > li {
+    margin-top: 0.375rem;
+    line-height: 1.55;
+  }
+
+  .prose-cumbre .not-prose ul > li:first-child,
+  .prose-cumbre .not-prose ol > li:first-child {
+    margin-top: 0;
+  }
+
+  .prose-cumbre .not-prose ul > li::before {
+    content: "";
+    position: absolute;
+    left: -0.875rem;
+    top: 0.6rem;
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background-color: currentColor;
+    opacity: 0.45;
+  }
+
+  .prose-cumbre .not-prose ol {
+    list-style: decimal;
+  }
+
+  .prose-cumbre .not-prose ol > li::before {
+    content: none;
+  }
 }
 
 @layer utilities {
