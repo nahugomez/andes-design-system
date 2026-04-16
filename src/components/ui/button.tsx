@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -99,7 +98,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ) : (
       <>
         {loading ? (
-          <Loader2 aria-hidden className="animate-spin" />
+          <span
+            aria-hidden
+            className="size-[1.05em] animate-spin rounded-full border-2 border-current border-t-transparent"
+          />
         ) : leadingIcon ? (
           <span aria-hidden className="inline-flex">
             {leadingIcon}

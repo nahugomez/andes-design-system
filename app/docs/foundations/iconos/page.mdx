@@ -1,0 +1,202 @@
+import { Callout } from "@/components/docs/callout";
+import { Preview, PreviewGrid } from "@/components/docs/preview";
+import {
+  IconArrowUpRight,
+  IconBellFilled,
+  IconBookFilled,
+  IconCheckFilled,
+  IconCircleCheckFilled,
+  IconCircleXFilled,
+  IconFileFilled,
+  IconFolderFilled,
+  IconHomeFilled,
+  IconMailFilled,
+  IconSearchFilled,
+  IconSettingsFilled,
+  IconSparklesFilled,
+  IconStarFilled,
+  IconSunFilled,
+  IconUserFilled,
+} from "@tabler/icons-react";
+
+export const metadata = {
+  title: "Iconos · Fundaciones",
+  description:
+    "Sistema de iconografía de Cumbre basado en Tabler Icons. Uso, tamaños y convenciones.",
+};
+
+# Iconos
+
+Cumbre usa **[Tabler Icons](https://tabler.io/icons)** como única librería de iconografía —
+específicamente el paquete `@tabler/icons-react`. Elegimos Tabler por tres razones: **geometría
+precisa** (alineada con el lenguaje visual del sistema), **catálogo amplio** (más de 5.000 iconos
+con licencia MIT) y **variantes filled + outline** (cubre los dos usos que necesitamos).
+
+## Estilo por default: Filled
+
+Por coherencia con la estética del sistema, **usamos la variante Filled en todos los casos
+posibles**. Los iconos filled tienen peso visual consistente con la tipografía en peso medium
+y no compiten con el texto circundante.
+
+<Preview label="Filled por default">
+  <div className="flex items-center gap-5 text-text">
+    <IconHomeFilled size={22} />
+    <IconSettingsFilled size={22} />
+    <IconUserFilled size={22} />
+    <IconMailFilled size={22} />
+    <IconBellFilled size={22} />
+    <IconFolderFilled size={22} />
+    <IconFileFilled size={22} />
+    <IconBookFilled size={22} />
+    <IconStarFilled size={22} />
+    <IconSearchFilled size={22} />
+  </div>
+</Preview>
+
+### La única excepción: glyphs direccionales
+
+Los iconos direccionales (flechas) no tienen variante Filled en Tabler — son glyphs inherently
+line-based. Para estos, usamos el outline. Es la **única excepción aceptada** en el sistema.
+
+<Preview label="Excepción: flechas en outline">
+  <div className="flex items-center gap-5 text-text">
+    <IconArrowUpRight size={22} />
+  </div>
+</Preview>
+
+## Uso
+
+En cualquier componente de la librería:
+
+```tsx
+import { IconCheckFilled, IconMailFilled } from "@tabler/icons-react";
+
+<IconCheckFilled size={16} className="text-success-500" />
+<IconMailFilled size={16} className="text-text-secondary" />
+```
+
+Los iconos heredan el color del texto contenedor vía `currentColor`, así que podés cambiar color
+con la utility `text-*` de Tailwind sin tocar el SVG.
+
+## Tamaños recomendados
+
+Tres tamaños cubren el 99% de los casos. Evitá tamaños arbitrarios — la precisión visual se
+sostiene con una escala limitada.
+
+<PreviewGrid columns={3}>
+  <div className="flex flex-col items-center gap-3 rounded-md border border-border bg-surface p-6">
+    <IconCircleCheckFilled size={16} className="text-success-500" />
+    <div className="text-center">
+      <p className="text-sm font-medium text-text">Small · 16px</p>
+      <p className="mt-1 text-xs text-text-tertiary">Dentro de texto, badges, controles densos</p>
+    </div>
+  </div>
+  <div className="flex flex-col items-center gap-3 rounded-md border border-border bg-surface p-6">
+    <IconCircleCheckFilled size={20} className="text-success-500" />
+    <div className="text-center">
+      <p className="text-sm font-medium text-text">Medium · 20px</p>
+      <p className="mt-1 text-xs text-text-tertiary">Headers de cards, callouts, menús</p>
+    </div>
+  </div>
+  <div className="flex flex-col items-center gap-3 rounded-md border border-border bg-surface p-6">
+    <IconCircleCheckFilled size={24} className="text-success-500" />
+    <div className="text-center">
+      <p className="text-sm font-medium text-text">Large · 24px</p>
+      <p className="mt-1 text-xs text-text-tertiary">Botones grandes, hero, empty states</p>
+    </div>
+  </div>
+</PreviewGrid>
+
+| Tamaño | px | Uso |
+| --- | --- | --- |
+| Small | 16 | Inline con texto · badges · inputs · controles de densidad alta |
+| Medium | 20 | Cards · callouts · menús · botones size md |
+| Large | 24 | Botones size lg · headers · empty states · hero |
+
+## Color
+
+Los iconos usan `currentColor` por default, heredando el color del texto contenedor.
+
+<Preview label="Color via currentColor">
+  <div className="flex items-center gap-5">
+    <IconSparklesFilled size={20} className="text-text" />
+    <IconSparklesFilled size={20} className="text-text-secondary" />
+    <IconSparklesFilled size={20} className="text-text-tertiary" />
+    <IconSparklesFilled size={20} className="text-accent-500" />
+    <IconSparklesFilled size={20} className="text-success-500" />
+    <IconSparklesFilled size={20} className="text-warning-500" />
+    <IconSparklesFilled size={20} className="text-danger-500" />
+    <IconSparklesFilled size={20} className="text-info-500" />
+  </div>
+</Preview>
+
+<Callout variant="info" title="Regla de oro">
+  Los iconos nunca llevan color por sí solos. **El color lo define el contexto** (estado,
+  jerarquía, ubicación). Un icono no tiene que ser reconocible por su color — tiene que
+  ser reconocible por su forma.
+</Callout>
+
+## Naming convention
+
+Tabler Icons usa el prefijo `Icon` y el sufijo `Filled` para la variante filled:
+
+| Variante | Patrón | Ejemplo |
+| --- | --- | --- |
+| Filled (default Cumbre) | `Icon<Name>Filled` | `IconCheckFilled`, `IconMailFilled` |
+| Outline (solo glyphs direccionales) | `Icon<Name>` | `IconArrowUpRight`, `IconArrowLeft` |
+
+Al buscar en [tabler.io/icons](https://tabler.io/icons), filtrá por **Filled** primero.
+Si no existe la variante filled para lo que necesitás, revisá si hay una alternativa con forma
+antes de recurrir al outline.
+
+## Cuándo usar iconos
+
+<Callout variant="do" title="Cuándo usar">
+  - Para **reforzar** una acción textual (botón "Guardar" con icono de check opcional).
+  - Como **única señal** en controles con tooltip explícito (icon buttons con `aria-label`).
+  - En **badges de estado** donde el color + forma comunican más que el texto solo.
+  - En **empty states** y **hero sections** como elemento visual focal.
+  - En **menús de navegación** densos donde el icono ayuda a escanear.
+</Callout>
+
+<Callout variant="dont" title="Cuándo NO usar">
+  - Como **decoración** vacía al costado de cada h2 o bullet — agrega ruido sin función.
+  - Para **reemplazar texto crítico** en acciones destructivas o flujos legales — los iconos
+    solos son ambiguos, WCAG recomienda siempre texto acompañante en contextos sensibles.
+  - Para **transmitir información compleja** — un icono no puede decir "3 expedientes pendientes
+    de aprobación desde el martes". Usá texto.
+  - **Más de uno junto al otro** sin separación semántica clara — el lector no sabe qué es qué.
+</Callout>
+
+## Accesibilidad
+
+- **Iconos decorativos**: agregar `aria-hidden` para que lectores de pantalla los ignoren.
+  El texto circundante ya comunica la acción.
+- **Iconos funcionales** (icon buttons sin texto): el botón contenedor debe tener
+  `aria-label` con la acción descrita. El icono adentro va con `aria-hidden`.
+- **Nunca** poner el icono en un `alt` o dejar que el lector lo interprete — los iconos no
+  tienen texto alternativo semánticamente útil.
+
+```tsx
+// Decorativo — el texto ya explica
+<Button>
+  <IconCheckFilled aria-hidden /> Guardar
+</Button>
+
+// Funcional — solo icono, el botón debe tener aria-label
+<button aria-label="Cerrar modal">
+  <IconCircleXFilled aria-hidden />
+</button>
+```
+
+## Instalación en un proyecto consumer
+
+Los componentes de Cumbre que usan iconos (Button loading, Checkbox, Callout, ThemeToggle)
+ya traen el import internamente. Si querés usar iconos adicionales en tu propio código:
+
+```bash
+npm install @tabler/icons-react
+```
+
+Ya está listado como `dependency` de `@andesia/cumbre`, pero podés instalarlo explícito en tu
+proyecto para que tu bundler tenga visibilidad directa del paquete.

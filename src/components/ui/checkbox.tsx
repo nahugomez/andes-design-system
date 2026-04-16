@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Check, Minus } from "lucide-react";
+import { IconCheckFilled } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
 export interface CheckboxProps
@@ -16,6 +16,7 @@ export const Checkbox = React.forwardRef<
 >(function Checkbox({ className, size = "md", ...props }, ref) {
   const dimensions = size === "sm" ? "h-4 w-4" : "h-[18px] w-[18px]";
   const iconSize = size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5";
+  const barSize = size === "sm" ? "h-0.5 w-2" : "h-0.5 w-2.5";
 
   return (
     <CheckboxPrimitive.Root
@@ -37,18 +38,18 @@ export const Checkbox = React.forwardRef<
       {...props}
     >
       <CheckboxPrimitive.Indicator className="flex items-center justify-center">
-        <Check
+        <IconCheckFilled
           aria-hidden
           className={cn(
-            "stroke-[3] group-data-[state=indeterminate]:hidden",
+            "group-data-[state=indeterminate]:hidden",
             iconSize,
           )}
         />
-        <Minus
+        <span
           aria-hidden
           className={cn(
-            "hidden stroke-[3] group-data-[state=indeterminate]:block",
-            iconSize,
+            "hidden rounded-sm bg-current group-data-[state=indeterminate]:block",
+            barSize,
           )}
         />
       </CheckboxPrimitive.Indicator>

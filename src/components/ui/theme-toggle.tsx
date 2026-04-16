@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
@@ -28,17 +28,19 @@ export function ThemeToggle({ className }: { className?: string }) {
         className,
       )}
     >
-      <Sun
+      <IconSunFilled
         aria-hidden
+        size={16}
         className={cn(
-          "h-4 w-4 transition-all duration-base ease-expressive",
+          "transition-all duration-base ease-expressive",
           isDark ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100",
         )}
       />
-      <Moon
+      <IconMoonFilled
         aria-hidden
+        size={16}
         className={cn(
-          "absolute h-4 w-4 transition-all duration-base ease-expressive",
+          "absolute transition-all duration-base ease-expressive",
           isDark ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0",
         )}
       />

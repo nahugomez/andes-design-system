@@ -24,6 +24,7 @@ export const docsNavigation: NavSection[] = [
     items: [
       { title: "Colores", href: "/docs/foundations/colores" },
       { title: "Tipografía", href: "/docs/foundations/tipografia" },
+      { title: "Iconos", href: "/docs/foundations/iconos" },
       { title: "Espaciado", href: "/docs/foundations/espaciado" },
       { title: "Bordes y radios", href: "/docs/foundations/bordes" },
       { title: "Sombras y elevación", href: "/docs/foundations/sombras" },

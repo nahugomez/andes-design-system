@@ -1,4 +1,9 @@
-import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
+import {
+  IconAlertTriangleFilled,
+  IconCircleCheckFilled,
+  IconCircleXFilled,
+  IconInfoCircleFilled,
+} from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
 type CalloutVariant = "info" | "success" | "warning" | "danger" | "do" | "dont";
@@ -16,14 +21,21 @@ const styles: Record<
 > = {
   info: {
     wrap: "border-info-100 bg-info-100/40 dark:border-info-700/40 dark:bg-info-500/10",
-    icon: <Info className="size-4 text-info-700 dark:text-info-500" aria-hidden />,
+    icon: (
+      <IconInfoCircleFilled
+        size={16}
+        className="text-info-700 dark:text-info-500"
+        aria-hidden
+      />
+    ),
     titleDefault: "Nota",
   },
   success: {
     wrap: "border-success-100 bg-success-100/40 dark:border-success-700/40 dark:bg-success-500/10",
     icon: (
-      <CheckCircle2
-        className="size-4 text-success-700 dark:text-success-500"
+      <IconCircleCheckFilled
+        size={16}
+        className="text-success-700 dark:text-success-500"
         aria-hidden
       />
     ),
@@ -32,8 +44,9 @@ const styles: Record<
   warning: {
     wrap: "border-warning-100 bg-warning-100/40 dark:border-warning-700/40 dark:bg-warning-500/10",
     icon: (
-      <AlertTriangle
-        className="size-4 text-warning-700 dark:text-warning-500"
+      <IconAlertTriangleFilled
+        size={16}
+        className="text-warning-700 dark:text-warning-500"
         aria-hidden
       />
     ),
@@ -42,15 +55,20 @@ const styles: Record<
   danger: {
     wrap: "border-danger-100 bg-danger-100/40 dark:border-danger-700/40 dark:bg-danger-500/10",
     icon: (
-      <XCircle className="size-4 text-danger-700 dark:text-danger-500" aria-hidden />
+      <IconCircleXFilled
+        size={16}
+        className="text-danger-700 dark:text-danger-500"
+        aria-hidden
+      />
     ),
     titleDefault: "Crítico",
   },
   do: {
     wrap: "border-success-100 bg-success-100/30 dark:border-success-700/30 dark:bg-success-500/5",
     icon: (
-      <CheckCircle2
-        className="size-4 text-success-700 dark:text-success-500"
+      <IconCircleCheckFilled
+        size={16}
+        className="text-success-700 dark:text-success-500"
         aria-hidden
       />
     ),
@@ -59,7 +77,11 @@ const styles: Record<
   dont: {
     wrap: "border-danger-100 bg-danger-100/30 dark:border-danger-700/30 dark:bg-danger-500/5",
     icon: (
-      <XCircle className="size-4 text-danger-700 dark:text-danger-500" aria-hidden />
+      <IconCircleXFilled
+        size={16}
+        className="text-danger-700 dark:text-danger-500"
+        aria-hidden
+      />
     ),
     titleDefault: "Cuándo NO usar",
   },

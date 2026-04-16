@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ArrowUpRight, Check, Mail, Search, Sparkles } from "lucide-react";
+import {
+  IconArrowUpRight,
+  IconCheckFilled,
+  IconMailFilled,
+  IconSearchFilled,
+  IconSparklesFilled,
+} from "@tabler/icons-react";
 import { SiteHeader } from "@/components/layouts/site-header";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { Button } from "@/components/ui/button";
@@ -77,7 +83,7 @@ function Hero() {
             <Button size="lg" asChild>
               <Link href="/docs" className="group">
                 Explorar documentación
-                <ArrowUpRight
+                <IconArrowUpRight
                   aria-hidden
                   className="size-4 transition-transform duration-base ease-expressive group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
@@ -95,12 +101,12 @@ function Hero() {
             </div>
             <div className="hidden h-4 w-px bg-border md:block" />
             <div className="hidden items-center gap-2 md:flex">
-              <Check className="size-3.5 text-success-500" aria-hidden />
+              <IconCheckFilled className="size-3.5 text-success-500" aria-hidden />
               <span>WCAG 2.1 AA</span>
             </div>
             <div className="hidden h-4 w-px bg-border md:block" />
             <div className="hidden items-center gap-2 md:flex">
-              <Check className="size-3.5 text-success-500" aria-hidden />
+              <IconCheckFilled className="size-3.5 text-success-500" aria-hidden />
               <span>Dark mode</span>
             </div>
           </div>
@@ -142,7 +148,7 @@ function Hero() {
             >
               <div className="flex items-start gap-3">
                 <div className="flex size-8 shrink-0 items-center justify-center rounded-sm bg-accent-500/15 text-accent-700 dark:text-accent-400">
-                  <Sparkles className="size-4" />
+                  <IconSparklesFilled className="size-4" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-text">Sugerencia IA</p>
@@ -195,7 +201,7 @@ function FoundationsStrip() {
             className="hidden items-center gap-2 text-sm font-medium text-text-secondary transition-colors hover:text-text md:inline-flex"
           >
             Ver todas
-            <ArrowUpRight className="size-4" />
+            <IconArrowUpRight className="size-4" />
           </Link>
         </div>
 
@@ -274,7 +280,7 @@ function FoundationCard({
       </div>
       <div className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-text-secondary transition-colors group-hover:text-accent-600 dark:group-hover:text-accent-400">
         Explorar
-        <ArrowUpRight className="size-3.5 transition-transform duration-base ease-expressive group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <IconArrowUpRight className="size-3.5 transition-transform duration-base ease-expressive group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
     </Link>
   );
@@ -312,7 +318,7 @@ function ComponentsShowcase() {
               <Button variant="destructive">Destructive</Button>
               <Button variant="link">Link →</Button>
               <Button loading>Guardando…</Button>
-              <Button size="sm" leadingIcon={<Sparkles />}>Small</Button>
+              <Button size="sm" leadingIcon={<IconSparklesFilled />}>Small</Button>
               <Button size="lg">Large</Button>
             </div>
           </Card>
@@ -330,7 +336,7 @@ function ComponentsShowcase() {
                   id="demo-email"
                   type="email"
                   placeholder="tu.nombre@andesia.ar"
-                  leadingIcon={<Mail />}
+                  leadingIcon={<IconMailFilled />}
                   hint="Usá el correo oficial de tu organismo"
                 />
               </div>
@@ -341,7 +347,7 @@ function ComponentsShowcase() {
                 <Input
                   id="demo-search"
                   placeholder="N° o palabra clave"
-                  leadingIcon={<Search />}
+                  leadingIcon={<IconSearchFilled />}
                 />
               </div>
               <div className="space-y-1.5">

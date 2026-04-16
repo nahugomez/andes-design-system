@@ -24,7 +24,7 @@ export default defineConfig({
     "clsx",
     "tailwind-merge",
     "class-variance-authority",
-    "lucide-react",
+    "@tabler/icons-react",
     "geist",
     /^@radix-ui\//,
   ],
