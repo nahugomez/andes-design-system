@@ -7,23 +7,19 @@ export const metadata = {
 
 Cumbre es la base sobre la que construimos los productos de AndesIA.
 Una colección de **fundaciones visuales**, **componentes** y **patrones** pensados
-para producir interfaces coherentes, accesibles y con carácter propio.
+para producir interfaces coherentes, accesibles y consistentes entre productos.
 
 ---
 
-## ¿Por qué un Design System?
+## El problema que resuelve
 
-Porque sin un sistema compartido, cada producto inventa su propia rueda. Los usuarios
-pagan el costo: inconsistencia, fricción, desconfianza. Cumbre resuelve eso centralizando:
+Sin un sistema compartido, cada producto vuelve a decidir colores, espacios y patrones desde
+cero. Los usuarios ven productos que se ven y se sienten distintos aunque vengan del mismo
+equipo. Cumbre centraliza tres cosas:
 
 - **Tokens** — colores, tipografía, espacios, sombras, movimiento. Una sola fuente de verdad.
-- **Componentes** — piezas probadas, accesibles (WCAG 2.1 AA) y temáticamente coherentes.
-- **Patrones** — cuándo usar qué, y cómo combinarlo. El cómo importa tanto como el qué.
-
-## Filosofía
-
-> Diseñamos para que el producto desaparezca y quede la tarea.
-> Cumbre se nota cuando algo se rompe — nunca cuando funciona.
+- **Componentes** — piezas probadas, accesibles (WCAG 2.1 AA) y consistentes con los tokens del sistema.
+- **Patrones** — cuándo usar qué, y cómo combinarlo.
 
 ## Empezá por acá
 
@@ -35,12 +31,12 @@ pagan el costo: inconsistencia, fricción, desconfianza. Cumbre resuelve eso cen
 ## Estado del sistema
 
 Cumbre está en **v0.1 · desarrollo activo**. Lo que está documentado es estable;
-lo que falta está pendiente. Esta página crecerá conforme el sistema madure.
+lo que falta está pendiente. Esta página crece con el sistema.
 
 ---
 
-## Versioning
+## Versionado
 
 Seguimos [Semantic Versioning](https://semver.org/lang/es/). Los tokens y las APIs
-públicas de componentes son contrato. Los cambios breaking requieren major bump y
-se comunican con migration notes.
+públicas de componentes son contrato. Los cambios incompatibles requieren un incremento
+mayor de versión, con notas de migración.
