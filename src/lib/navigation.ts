@@ -22,21 +22,21 @@ export const docsNavigation: NavSection[] = [
   {
     title: "Fundaciones",
     items: [
-      { title: "Colores", href: "/docs/foundations/colores" },
-      { title: "Tipografía", href: "/docs/foundations/tipografia" },
-      { title: "Iconos", href: "/docs/foundations/iconos" },
-      { title: "Espaciado", href: "/docs/foundations/espaciado" },
-      { title: "Bordes y radios", href: "/docs/foundations/bordes" },
-      { title: "Sombras y elevación", href: "/docs/foundations/sombras" },
-      { title: "Movimiento", href: "/docs/foundations/movimiento" },
-      { title: "Breakpoints", href: "/docs/foundations/breakpoints" },
+      { title: "Colores", href: "/docs/fundaciones/colores" },
+      { title: "Tipografía", href: "/docs/fundaciones/tipografia" },
+      { title: "Iconos", href: "/docs/fundaciones/iconos" },
+      { title: "Espaciado", href: "/docs/fundaciones/espaciado" },
+      { title: "Bordes y radios", href: "/docs/fundaciones/bordes" },
+      { title: "Sombras y elevación", href: "/docs/fundaciones/sombras" },
+      { title: "Movimiento", href: "/docs/fundaciones/movimiento" },
+      { title: "Breakpoints", href: "/docs/fundaciones/breakpoints" },
     ],
   },
   {
     title: "Patrones",
     items: [
-      { title: "Layout y grillas", href: "/docs/patterns/layout" },
-      { title: "Navegación", href: "/docs/patterns/navegacion" },
+      { title: "Layout y grillas", href: "/docs/patrones/layout" },
+      { title: "Navegación", href: "/docs/patrones/navegacion" },
     ],
   },
   {
@@ -48,14 +48,14 @@ export const docsNavigation: NavSection[] = [
   {
     title: "Componentes · Átomos",
     items: [
-      { title: "Button", href: "/docs/components/button" },
-      { title: "Input", href: "/docs/components/input" },
-      { title: "Checkbox", href: "/docs/components/checkbox" },
-      { title: "Badge", href: "/docs/components/badge" },
+      { title: "Button", href: "/docs/componentes/button" },
+      { title: "Input", href: "/docs/componentes/input" },
+      { title: "Checkbox", href: "/docs/componentes/checkbox" },
+      { title: "Badge", href: "/docs/componentes/badge" },
     ],
   },
   {
     title: "Componentes · Moléculas",
-    items: [{ title: "Card", href: "/docs/components/card" }],
+    items: [{ title: "Card", href: "/docs/componentes/card" }],
   },
 ];

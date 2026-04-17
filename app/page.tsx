@@ -86,7 +86,7 @@ function Hero() {
               </Link>
             </Button>
             <Button variant="secondary" size="lg" asChild>
-              <Link href="/docs/foundations/colores">Ver fundaciones</Link>
+              <Link href="/docs/fundaciones/colores">Ver fundaciones</Link>
             </Button>
           </div>
 
@@ -189,7 +189,7 @@ function FoundationsStrip() {
             </h2>
           </div>
           <Link
-            href="/docs/foundations/colores"
+            href="/docs/fundaciones/colores"
             className="hidden items-center gap-2 text-sm font-medium text-text-secondary transition-colors hover:text-text md:inline-flex"
           >
             Ver todas
@@ -219,25 +219,25 @@ function FoundationsStrip() {
             number="A"
             title="Tipografía"
             description="Geist Sans + Fraunces Display. Jerarquía por tamaño, no por color."
-            href="/docs/foundations/tipografia"
+            href="/docs/fundaciones/tipografia"
           />
           <FoundationCard
             number="B"
             title="Espaciado"
             description="Base 4 con escala armónica. Ritmo vertical consistente."
-            href="/docs/foundations/espaciado"
+            href="/docs/fundaciones/espaciado"
           />
           <FoundationCard
             number="C"
             title="Elevación"
             description="Sombras tintadas con navy para coherencia cromática."
-            href="/docs/foundations/sombras"
+            href="/docs/fundaciones/sombras"
           />
           <FoundationCard
             number="D"
             title="Movimiento"
             description="Easings expresivos. Duración honesta con la acción."
-            href="/docs/foundations/movimiento"
+            href="/docs/fundaciones/movimiento"
           />
         </div>
       </div>

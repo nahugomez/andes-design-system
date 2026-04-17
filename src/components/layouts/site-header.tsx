@@ -35,13 +35,13 @@ export function SiteHeader({ className }: { className?: string }) {
             Documentación
           </Link>
           <Link
-            href="/docs/foundations/colores"
+            href="/docs/fundaciones/colores"
             className="transition-colors duration-fast ease-precise hover:text-text"
           >
             Fundaciones
           </Link>
           <Link
-            href="/docs/components/button"
+            href="/docs/componentes/button"
             className="transition-colors duration-fast ease-precise hover:text-text"
           >
             Componentes

@@ -16,10 +16,10 @@ export function SiteFooter() {
           <Link href="/docs" className="hover:text-text">
             Docs
           </Link>
-          <Link href="/docs/foundations/colores" className="hover:text-text">
+          <Link href="/docs/fundaciones/colores" className="hover:text-text">
             Fundaciones
           </Link>
-          <Link href="/docs/components/button" className="hover:text-text">
+          <Link href="/docs/componentes/button" className="hover:text-text">
             Componentes
           </Link>
           <span className="text-2xs uppercase tracking-widest">v0.1.0</span>
