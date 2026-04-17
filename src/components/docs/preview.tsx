@@ -27,7 +27,7 @@ export function Preview({
       ) : null}
       <div
         className={cn(
-          "flex w-full flex-wrap gap-4 p-8",
+          "flex w-full flex-wrap gap-4 overflow-x-auto p-4 md:p-8",
           align === "center" ? "items-center justify-center" : "items-start justify-start",
           background === "muted" && "bg-surface-subtle",
           background === "grid" &&
