@@ -13,18 +13,25 @@ El layout es la **arquitectura silenciosa** de una interfaz. Se nota cuando fall
 desaparece cuando funciona. Cumbre usa **grillas predecibles**, **containers
 acotados** y **un puñado de patrones** que resuelven el 90% de los casos.
 
-## Grilla · 12 columnas, gutters de 24
+## Grilla · responsive · 4 / 8 / 12 columnas
 
-La grilla base de Cumbre es de **12 columnas**, con gutters de **24px** a partir de `md`.
-En móvil colapsa a **4 columnas** con gutters de 16px. No es dogma: si tu layout cabe en
-una grilla de 6, usala. La de 12 es divisible por 2, 3, 4 y 6 — por eso es versátil.
+La grilla base de Cumbre colapsa según el dispositivo:
 
-<Preview label="12 columnas · gutters 24px" background="muted" minHeight={140}>
-  <div className="grid w-full grid-cols-12 gap-6">
+| Breakpoint | Columnas | Gutter |
+| --- | --- | --- |
+| Mobile (`< md`) | 4 | 16px |
+| Tablet (`md` a `lg`) | 8 | 24px |
+| Desktop (`lg +`) | 12 | 24px |
+
+12 es divisible por 2, 3, 4 y 6 — por eso es versátil en desktop. 8 en tablet mantiene la
+lógica de mitades y cuartos. 4 en mobile fuerza decisiones duras: si no entra en 4, no entra.
+
+<Preview label="Grilla responsive · 4 / 8 / 12 columnas" background="muted" minHeight={140}>
+  <div className="grid w-full grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12">
     {Array.from({ length: 12 }).map((_, i) => (
       <div
         key={i}
-        className="h-16 rounded-sm border border-border bg-surface text-center text-2xs font-mono text-text-tertiary"
+        className={`${i < 4 ? "flex" : i < 8 ? "hidden md:flex" : "hidden lg:flex"} h-16 items-center justify-center rounded-sm border border-border bg-surface text-2xs font-mono text-text-tertiary`}
       >
         {i + 1}
       </div>
@@ -86,8 +93,8 @@ Sidebar fijo (lg+) o off-canvas (móvil). El sidebar toma un **ancho fijo** (256
 el main toma el resto.
 
 <Preview label="Sidebar layout" background="muted" align="start" minHeight={260}>
-  <div className="flex w-full gap-6">
-    <aside className="w-48 shrink-0 rounded-md border border-border bg-surface p-4 text-sm text-text">
+  <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
+    <aside className="rounded-md border border-border bg-surface p-4 text-sm text-text md:w-48 md:shrink-0">
       Sidebar
       <div className="mt-2 flex flex-col gap-1 text-xs text-text-secondary">
         <span>Item 1</span>
@@ -95,7 +102,7 @@ el main toma el resto.
         <span>Item 3</span>
       </div>
     </aside>
-    <main className="flex-1 rounded-md border border-border bg-surface p-4 text-sm text-text">
+    <main className="rounded-md border border-border bg-surface p-4 text-sm text-text md:flex-1">
       Main content
     </main>
   </div>
@@ -134,12 +141,10 @@ Usá `auto-fill` + `minmax` para que el grid se reacomode solo según el ancho d
 Un bloque que rompe el container y va de punta a punta. Útil para heroes y secciones de
 marketing.
 
-<Preview label="Full-bleed + container interno" background="muted" align="start" minHeight={180}>
-  <div className="w-full">
-    <div className="w-full rounded-md bg-primary-900 px-6 py-10 text-center text-text-on-primary">
-      <p className="text-lg font-light">Sección full-bleed</p>
-      <p className="mt-1 text-xs text-text-on-primary/70">Ocupa todo el ancho disponible</p>
-    </div>
+<Preview label="Full-bleed + container interno" background="muted" minHeight={180}>
+  <div className="w-full rounded-md bg-primary-900 px-6 py-10 text-center text-neutral-50">
+    <p className="text-lg font-light">Sección full-bleed</p>
+    <p className="mt-1 text-xs text-neutral-50/70">Ocupa todo el ancho disponible</p>
   </div>
 </Preview>
 
