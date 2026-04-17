@@ -28,15 +28,15 @@ export const metadata = {
 # Iconos
 
 Cumbre usa **[Tabler Icons](https://tabler.io/icons)** como única librería de iconografía —
-específicamente el paquete `@tabler/icons-react`. Elegimos Tabler por tres razones: **geometría
+específicamente el paquete `@tabler/icons-react`. Cumbre lo adoptó por tres razones: **geometría
 precisa** (alineada con el lenguaje visual del sistema), **catálogo amplio** (más de 5.000 iconos
-con licencia MIT) y **variantes filled + outline** (cubre los dos usos que necesitamos).
+con licencia MIT) y **variantes filled + outline** (cubre los dos usos del sistema).
 
 ## Estilo por default: Filled
 
-Por coherencia con la estética del sistema, **usamos la variante Filled en todos los casos
-posibles**. Los iconos filled tienen peso visual consistente con la tipografía en peso medium
-y no compiten con el texto circundante.
+Por coherencia con la estética del sistema, **el sistema usa la variante Filled en todos los
+casos posibles**. Los iconos filled tienen peso visual consistente con la tipografía en peso
+medium y no compiten con el texto circundante.
 
 <Preview label="Filled por default">
   <div className="flex items-center gap-5 text-text">
@@ -55,8 +55,8 @@ y no compiten con el texto circundante.
 
 ### La única excepción: glyphs direccionales
 
-Los iconos direccionales (flechas) no tienen variante Filled en Tabler — son glyphs inherently
-line-based. Para estos, usamos el outline. Es la **única excepción aceptada** en el sistema.
+Los iconos direccionales (flechas) no tienen variante Filled en Tabler — son glyphs line-based
+por naturaleza. Para estos, Cumbre usa el outline. Es la **única excepción aceptada** en el sistema.
 
 <Preview label="Excepción: flechas en outline">
   <div className="flex items-center gap-5 text-text">
@@ -192,7 +192,7 @@ antes de recurrir al outline.
 ## Instalación en un proyecto consumer
 
 Los componentes de Cumbre que usan iconos (Button loading, Checkbox, Callout, ThemeToggle)
-ya traen el import internamente. Si querés usar iconos adicionales en tu propio código:
+ya traen el import. Si querés usar iconos adicionales en tu propio código:
 
 ```bash
 npm install @tabler/icons-react
