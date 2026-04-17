@@ -66,11 +66,7 @@ function Hero() {
           </div>
 
           <h1 className="max-w-[14ch] text-balance text-5xl font-light leading-[0.95] tracking-[-0.045em] text-text md:text-6xl lg:text-7xl">
-            La base sobre la que construimos{" "}
-            <em className="font-medium italic tracking-[-0.05em] text-accent-600 dark:text-accent-400">
-              lo esencial
-            </em>
-            .
+            La base sobre la que construimos lo esencial.
           </h1>
 
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl">
@@ -189,11 +185,7 @@ function FoundationsStrip() {
               02 · Fundaciones
             </p>
             <h2 className="max-w-[18ch] text-balance text-3xl font-light leading-[1.05] tracking-[-0.035em] text-text md:text-5xl">
-              Tokens primero.{" "}
-              <em className="font-light italic text-text-secondary">
-                Todo lo demás
-              </em>{" "}
-              viene después.
+              Tokens primero. Todo lo demás viene después.
             </h2>
           </div>
           <Link
@@ -297,10 +289,7 @@ function ComponentsShowcase() {
               03 · Componentes
             </p>
             <h2 className="max-w-[18ch] text-balance text-3xl font-light leading-[1.05] tracking-[-0.035em] text-text md:text-5xl">
-              Cinco piezas.{" "}
-              <em className="font-light italic text-text-secondary">
-                Cada una pulida.
-              </em>
+              Cinco piezas. Cada una pulida.
             </h2>
           </div>
         </div>
@@ -426,11 +415,7 @@ function CTA() {
             04 · Empezar
           </p>
           <h2 className="max-w-[16ch] text-balance text-4xl font-light leading-[1.02] tracking-[-0.04em] md:text-6xl">
-            Instalá Cumbre y empezá a{" "}
-            <em className="font-medium italic tracking-[-0.045em] text-accent-400">
-              construir
-            </em>
-            .
+            Instalá Cumbre y empezá a construir.
           </h2>
         </div>
         <div className="flex flex-col justify-end gap-4">

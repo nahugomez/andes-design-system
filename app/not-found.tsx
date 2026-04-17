@@ -13,11 +13,7 @@ export default function NotFound() {
             Error 404
           </p>
           <h1 className="mx-auto max-w-[14ch] text-balance text-5xl font-light leading-[0.98] tracking-[-0.045em] text-text md:text-7xl">
-            No encontramos{" "}
-            <em className="font-medium italic tracking-[-0.05em] text-accent-600 dark:text-accent-400">
-              esa página
-            </em>
-            .
+            No encontramos esa página.
           </h1>
           <p className="mx-auto mt-8 max-w-md text-lg leading-relaxed text-text-secondary">
             Puede que se haya movido o que nunca haya existido. Volvé al inicio
