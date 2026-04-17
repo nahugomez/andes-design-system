@@ -104,7 +104,9 @@
   --shadow-lg: 0 12px 24px -6px hsl(227 47% 17% / 0.10), 0 4px 8px -4px hsl(227 47% 17% / 0.06);
   --shadow-xl: 0 24px 48px -12px hsl(227 47% 17% / 0.16), 0 8px 16px -8px hsl(227 47% 17% / 0.08);
   --shadow-2xl: 0 32px 64px -16px hsl(227 47% 17% / 0.22);
-  --shadow-focus: 0 0 0 3px hsl(var(--focus-ring) / 0.35);
+  /* Focus shadow con doble ring: offset interno del color de surface + ring ámbar.
+   * Garantiza visibilidad sobre cualquier fondo, incluso si el elemento es ámbar. */
+  --shadow-focus: 0 0 0 2px hsl(var(--focus-ring-offset)), 0 0 0 5px hsl(var(--focus-ring));
 
   /* ─── Motion ─── */
   --duration-instant: 100ms;
