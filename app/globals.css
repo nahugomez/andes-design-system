@@ -61,16 +61,16 @@
   }
 
   /* ─── Prose Cumbre — tipografía de contenido en docs ─── */
-  .prose-cumbre {
+  :where(.prose-cumbre) {
     color: hsl(var(--foreground));
     line-height: 1.7;
   }
 
   .prose-cumbre > * + * {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 
-  .prose-cumbre h1 {
+  :where(.prose-cumbre) h1 {
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: clamp(2.25rem, 4vw, 3.5rem);
     font-weight: 300;
@@ -82,16 +82,13 @@
     text-wrap: balance;
   }
 
-  .prose-cumbre h1 em {
-    font-style: italic;
-    font-weight: 300;
-    color: hsl(var(--cumbre-accent-600));
-  }
-  .dark .prose-cumbre h1 em {
-    color: hsl(var(--cumbre-accent-400));
+  :where(.prose-cumbre) h1 em {
+    font-style: normal;
+    font-weight: inherit;
+    color: inherit;
   }
 
-  .prose-cumbre h2 {
+  :where(.prose-cumbre) h2 {
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: 1.75rem;
     font-weight: 600;
@@ -104,13 +101,13 @@
     border-top: 1px solid hsl(var(--border-subtle));
   }
 
-  .prose-cumbre h2:first-child {
+  :where(.prose-cumbre) h2:first-child {
     border-top: none;
     padding-top: 0;
     margin-top: 0;
   }
 
-  .prose-cumbre h3 {
+  :where(.prose-cumbre) h3 {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.3;
@@ -120,7 +117,7 @@
     color: hsl(var(--text-primary));
   }
 
-  .prose-cumbre h4 {
+  :where(.prose-cumbre) h4 {
     font-size: 1rem;
     font-weight: 600;
     margin-top: 1.5rem;
@@ -128,28 +125,28 @@
     color: hsl(var(--text-primary));
   }
 
-  .prose-cumbre p {
+  :where(.prose-cumbre) p {
     color: hsl(var(--text-secondary));
     font-size: 1rem;
   }
 
-  .prose-cumbre .lead,
-  .prose-cumbre > p:first-of-type {
+  :where(.prose-cumbre) .lead,
+  :where(.prose-cumbre) > p:first-of-type {
     font-size: 1.125rem;
     line-height: 1.65;
     color: hsl(var(--text-secondary));
   }
 
-  .prose-cumbre strong {
+  :where(.prose-cumbre) strong {
     font-weight: 600;
     color: hsl(var(--text-primary));
   }
 
-  .prose-cumbre em {
+  :where(.prose-cumbre) em {
     font-style: italic;
   }
 
-  .prose-cumbre a {
+  :where(.prose-cumbre) a:not(:where(.not-prose *)) {
     color: hsl(var(--text-primary));
     text-decoration: underline;
     text-decoration-color: hsl(var(--cumbre-accent-500));
@@ -158,29 +155,29 @@
     transition: color var(--duration-fast) var(--ease-precise);
   }
 
-  .prose-cumbre a:hover {
+  :where(.prose-cumbre) a:hover:not(:where(.not-prose *)) {
     color: hsl(var(--cumbre-accent-600));
   }
-  .dark .prose-cumbre a:hover {
+  .dark :where(.prose-cumbre) a:hover:not(:where(.not-prose *)) {
     color: hsl(var(--cumbre-accent-400));
   }
 
-  .prose-cumbre ul,
-  .prose-cumbre ol {
+  :where(.prose-cumbre) ul,
+  :where(.prose-cumbre) ol {
     padding-left: 1.5rem;
     color: hsl(var(--text-secondary));
   }
 
-  .prose-cumbre li {
+  :where(.prose-cumbre) li {
     margin-top: 0.5rem;
   }
 
-  .prose-cumbre ul > li {
+  :where(.prose-cumbre) ul > li {
     list-style-type: none;
     position: relative;
   }
 
-  .prose-cumbre ul > li::before {
+  :where(.prose-cumbre) ul > li::before {
     content: "";
     position: absolute;
     left: -1rem;
@@ -190,11 +187,11 @@
     background-color: hsl(var(--cumbre-accent-500));
   }
 
-  .prose-cumbre ol {
+  :where(.prose-cumbre) ol {
     list-style: decimal;
   }
 
-  .prose-cumbre code {
+  :where(.prose-cumbre) code {
     font-family: var(--font-geist-mono), ui-monospace, monospace;
     font-size: 0.875em;
     padding: 0.125rem 0.375rem;
@@ -204,7 +201,7 @@
     border: 1px solid hsl(var(--border-subtle));
   }
 
-  .prose-cumbre pre {
+  :where(.prose-cumbre) pre {
     font-family: var(--font-geist-mono), ui-monospace, monospace;
     font-size: 0.8125rem;
     line-height: 1.65;
@@ -216,7 +213,7 @@
     border: 1px solid hsl(var(--cumbre-primary-800));
   }
 
-  .prose-cumbre pre code {
+  :where(.prose-cumbre) pre code {
     background: transparent;
     border: none;
     padding: 0;
@@ -224,7 +221,7 @@
     font-size: inherit;
   }
 
-  .prose-cumbre hr {
+  :where(.prose-cumbre) hr {
     border: none;
     height: 1px;
     background: linear-gradient(
@@ -238,7 +235,7 @@
     position: relative;
   }
 
-  .prose-cumbre hr::after {
+  :where(.prose-cumbre) hr::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -249,7 +246,7 @@
     transform: translate(-50%, -50%) rotate(45deg);
   }
 
-  .prose-cumbre blockquote {
+  :where(.prose-cumbre) blockquote {
     position: relative;
     margin-left: 0;
     padding-left: 1.5rem;
@@ -260,13 +257,13 @@
     line-height: 1.5;
   }
 
-  .prose-cumbre table {
+  :where(.prose-cumbre) table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.875rem;
   }
 
-  .prose-cumbre th {
+  :where(.prose-cumbre) th {
     text-align: left;
     padding: 0.5rem 0.75rem;
     font-weight: 600;
@@ -277,38 +274,63 @@
     letter-spacing: 0.05em;
   }
 
-  .prose-cumbre td {
+  :where(.prose-cumbre) td {
     padding: 0.75rem;
     border-bottom: 1px solid hsl(var(--border-subtle));
     color: hsl(var(--text-secondary));
   }
 
-  .prose-cumbre .not-prose {
+  :where(.prose-cumbre) .not-prose {
     line-height: normal;
   }
-  .prose-cumbre .not-prose * {
+  :where(.prose-cumbre) .not-prose * {
     margin-top: initial;
   }
 
-  /* Listas dentro de Callouts u otros .not-prose — sin dash ámbar, dot neutro y compacto */
-  .prose-cumbre .not-prose ul,
-  .prose-cumbre .not-prose ol {
-    padding-left: 1rem;
+  /* Reset: listas DENTRO de .not-prose pierden todos los estilos de prose
+   * (sin indent, sin dot, sin decimal). Las listas custom del Callout se
+   * re-aplican abajo vía .cumbre-callout-body. */
+  :where(.prose-cumbre) .not-prose ul,
+  :where(.prose-cumbre) .not-prose ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
     color: inherit;
   }
 
-  .prose-cumbre .not-prose ul > li,
-  .prose-cumbre .not-prose ol > li {
+  :where(.prose-cumbre) .not-prose li {
+    margin: 0;
+    line-height: inherit;
+  }
+
+  :where(.prose-cumbre) .not-prose ul > li::before,
+  :where(.prose-cumbre) .not-prose ol > li::before {
+    content: none;
+  }
+
+  /* Re-apply: listas específicas del body del Callout */
+  .cumbre-callout-body ul,
+  .cumbre-callout-body ol {
+    padding-left: 1rem;
+  }
+
+  .cumbre-callout-body ul > li,
+  .cumbre-callout-body ol > li {
+    position: relative;
     margin-top: 0.375rem;
     line-height: 1.55;
   }
 
-  .prose-cumbre .not-prose ul > li:first-child,
-  .prose-cumbre .not-prose ol > li:first-child {
+  .cumbre-callout-body ul > li:first-child,
+  .cumbre-callout-body ol > li:first-child {
     margin-top: 0;
   }
 
-  .prose-cumbre .not-prose ul > li::before {
+  .cumbre-callout-body ul {
+    list-style: none;
+  }
+
+  .cumbre-callout-body ul > li::before {
     content: "";
     position: absolute;
     left: -0.875rem;
@@ -320,12 +342,9 @@
     opacity: 0.45;
   }
 
-  .prose-cumbre .not-prose ol {
+  .cumbre-callout-body ol {
     list-style: decimal;
-  }
-
-  .prose-cumbre .not-prose ol > li::before {
-    content: none;
+    padding-left: 1.25rem;
   }
 }
 

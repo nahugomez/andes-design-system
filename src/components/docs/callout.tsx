@@ -114,7 +114,7 @@ export function Callout({ variant = "info", title, children, className }: Callou
           {title ?? style.titleDefault}
         </p>
       </div>
-      <div className="text-text-secondary">{children}</div>
+      <div className="cumbre-callout-body text-text-secondary">{children}</div>
     </div>
   );
 }
